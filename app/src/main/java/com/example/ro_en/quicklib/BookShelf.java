@@ -21,7 +21,6 @@ public class BookShelf {
     public List<Integer> bookId;
 
     public BookShelf() {
-
     }
 
     public int getId() {

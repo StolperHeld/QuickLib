@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="@android:color/holo_green_light"
-        app:layout_anchor="@id/mainListView"
+        app:layout_anchor="@id/addBookShelfBtn"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_add_black_24dp" />
         app:rippleColor="@android:color/transparent"
