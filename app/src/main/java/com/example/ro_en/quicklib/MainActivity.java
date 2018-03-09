@@ -23,34 +23,31 @@ public class MainActivity extends AppCompatActivity {
         addBookShelfBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        addBookShelfBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                AlertDialog.Builder alertDialog;
-                alertDialog = new AlertDialog.Builder(MainActivity.this);
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
                 alertDialog.create();
                 alertDialog.setTitle("BookShelf");
                 alertDialog.setMessage("insert here the neme from your new BookShelf");
                 final EditText bookShelfname = new EditText(MainActivity.this);
+                alertDialog.setView(bookShelfname);
                 alertDialog.setCancelable(false);
                 alertDialog.setPositiveButton("add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        String listName = bookShelfname.getText().toString();
+                        BookShelf newBookShelf = new BookShelf();
+                        newBookShelf.setListName(listName);
                     }
                 });
-
+                alertDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                alertDialog.show();
             }
-
         });
-
-
-
     }
 
 }
