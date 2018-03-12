@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,10 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
     private List<BookShelf> bookShelfList;
     private View.OnLongClickListener longClickListener;
+
+    //TODO: bei diesem Konstruktor ist mir noch nicht klar was er macht --> kommt aus der MainActivity
+    public RecyclerViewAdapter(ArrayList<BookShelf> bookShelves, MainActivity mainActivity) {
+    }
 
 
     @Override

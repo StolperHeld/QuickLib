@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"/>
 
-    </LinearLayout>
+
     <android.support.v7.app.AlertController.RecycleListView
         android:id="@+id/mainRecyclerView"
         android:layout_width="match_parent"
@@ -30,6 +30,6 @@
         android:layout_margin="@dimen/text_margin"
         >
     </android.support.v7.app.AlertController.RecycleListView>
+    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
-
-</android.support.v4.widget.NestedScrollView>

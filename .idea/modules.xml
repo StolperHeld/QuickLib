@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/QuickLib.iml" filepath="$PROJECT_DIR$/QuickLib.iml" />
-      <module fileurl="file://C:\Users\thoma\AndroidStudioProjects\QuickLib\QuickLib.iml" filepath="C:\Users\thoma\AndroidStudioProjects\QuickLib\QuickLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -16,7 +16,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    RecyclerView recyclerView;
+    //RecyclerView recyclerView; <-- TODO: schauen ob benötigt wird
     RecyclerViewAdapter recyclerViewAdapter;
     RecyclerView recyclerView;
 
@@ -49,6 +49,15 @@ public class MainActivity extends AppCompatActivity {
                         String listName = bookShelfname.getText().toString();
                         BookShelf newBookShelf = new BookShelf();
                         newBookShelf.setListName(listName);
+                        HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
+                        String output = null;
+                        try {
+                            output = requestBuilder.buildHttpRequest("0451526538");
+                            System.out.println(output);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 });
                 alertDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
