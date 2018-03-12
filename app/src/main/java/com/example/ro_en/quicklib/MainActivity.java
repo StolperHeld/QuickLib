@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     //RecyclerView recyclerView; <-- TODO: schauen ob benötigt wird
-    RecyclerViewAdapter recyclerViewAdapter;
+    //RecyclerViewAdapter recyclerViewAdapter;
     RecyclerView recyclerView;
 
 
@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        recyclerView = (RecyclerView) findViewById(R.id.mainRecyclerView);
-        recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<BookShelf>(),MainActivity.this);
+        //recyclerView = (RecyclerView) findViewById(R.id.mainRecyclerView);
+        //recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<BookShelf>(),MainActivity.this);
 
 
         FloatingActionButton addBookShelfBtn = (FloatingActionButton) findViewById(R.id.addBookShelfBtn);
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
                 alertDialog.create();
                 alertDialog.setTitle("BookShelf");
-                alertDialog.setMessage("insert here the neme from your new BookShelf");
+                alertDialog.setMessage("insert here the name for your new BookShelf");
                 final EditText bookShelfname = new EditText(MainActivity.this);
                 alertDialog.setView(bookShelfname);
                 alertDialog.setCancelable(false);
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String listName = bookShelfname.getText().toString();
-                        BookShelf newBookShelf = new BookShelf();
-                        newBookShelf.setListName(listName);
+                        //BookShelf newBookShelf = new BookShelf();
+                        //newBookShelf.setListName(listName);
                         HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
                         String output = null;
                         try {

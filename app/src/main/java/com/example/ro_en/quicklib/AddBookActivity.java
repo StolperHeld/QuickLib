@@ -35,8 +35,8 @@ public class AddBookActivity extends AppCompatActivity {
                 String bookTitle = addBookTitle.getText().toString();
 
                 //Create Book Object
-                Book newBook = new Book();
-                newBook.setBookTitle(bookTitle);
+                //Book newBook = new Book();
+                //newBook.setBookTitle(bookTitle);
 
             }
         });
