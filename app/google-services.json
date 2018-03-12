@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "824748803859",
+    "firebase_url": "https://quichlib.firebaseio.com",
+    "project_id": "quichlib",
+    "storage_bucket": "quichlib.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824748803859:android:508c463657cc65dd",
+        "android_client_info": {
+          "package_name": "com.example.ro_en.quicklib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824748803859-bvonmr9qcdhsl5u560pn8uu977smiimt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8xpN1V4XUlb1KhWNJHgR_4K5RnpU5y-Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
