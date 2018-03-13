@@ -36,6 +36,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.google.android.gms:play-services-vision:11.8.0'
+
+    //Navigation Drawer
+    implementation 'com.android.support:design:26.1.0'
 }
 //Firebase
 apply plugin: 'com.google.gms.google-services'
