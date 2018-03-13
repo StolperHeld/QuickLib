@@ -4,32 +4,21 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 //Imports Firebase Auth
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.android.gms.tasks.Task;
+
 
 public class MainActivity extends AppCompatActivity {
     //RecyclerView recyclerView; <-- TODO: schauen ob benötigt wird
@@ -39,6 +28,27 @@ public class MainActivity extends AppCompatActivity {
     private String userId;
     private static final String TAG = "MainActivity";
 
+    private void createList(String name) {
+        // Access a Cloud Firestore instance from your Activity
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference listRef = db.collection("lists");
+        Lists lists = new Lists();
+        lists.setName(name);
+        listRef.document()
+                .set(lists)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,26 +65,13 @@ public class MainActivity extends AppCompatActivity {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userId = user.getUid().toString();
 
-        // Access a Cloud Firestore instance from your Activity
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference userRef = db.collection("user");
+
         User userNew = new User();
+
         //userNew.setUid(userId);
         //userNew.setFirstname("Robert");
-        userRef.document(userId)
-                .set(userNew)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
+        //userRef.document(userId) to Add User to Firestore with Generated User ID
+
 
 
         FloatingActionButton addBookShelfBtn = (FloatingActionButton) findViewById(R.id.addBookShelfBtn);
@@ -93,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String listName = bookShelfname.getText().toString();
-                        //BookShelf newBookShelf = new BookShelf();
-                        //newBookShelf.setListName(listName);
+                        FirebaseMethods.createList(listName);
+                        /*
                         HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
                         String output = null;
                         try {
@@ -103,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        */
 
                     }
                 });

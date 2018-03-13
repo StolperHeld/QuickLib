@@ -6,28 +6,29 @@
     android:layout_height="match_parent"
     tools:context="com.example.ro_en.quicklib.BarcodeScannerActivity">
 
-    <TextView
-        android:id="@+id/result_textview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/no_barcode_captured"
-        android:textSize="22sp"
-        android:freezesText="true"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        app:layout_constraintBottom_toTopOf="@id/scan_barcode_button"/>
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/scan_barcode_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/scan_barcode_button"
-        android:layout_below="@id/result_textview"
-        android:background="@color/colorAccent"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.7"/>
+        <TextView
+            android:id="@+id/result_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:freezesText="true"
+            android:gravity="center"
+            android:text="@string/no_barcode_captured"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/scan_barcode_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/secondaryColor"
+            android:text="@string/scan_barcode_button"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

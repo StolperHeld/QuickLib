@@ -1,6 +1,6 @@
 package com.example.ro_en.quicklib;
 
-import java.lang.reflect.Array;
+import java.util.List;
 
 /**
  * Created by RO_EN on 12.03.2018.
@@ -10,11 +10,16 @@ public class User {
 
     private String firstname;
     private String lastname;
-    private String uid;
 
-    private Array lists;
+    private List<String> lists;
 
     public User() {}
+
+    public User(String firstname, String lastname, List<String> lists) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.lists = lists;
+    }
 
     public String getFirstname() {
         return firstname;
@@ -24,11 +29,8 @@ public class User {
         return lastname;
     }
 
-    public String getUid() {
-        return uid;
-    }
 
-    public Array getLists() {
+    public List<String> getLists() {
         return lists;
     }
 
@@ -40,11 +42,8 @@ public class User {
         this.lastname = lastname;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
 
-    public void setLists(Array lists) {
+    public void setLists(List<String> lists) {
         this.lists = lists;
     }
 }

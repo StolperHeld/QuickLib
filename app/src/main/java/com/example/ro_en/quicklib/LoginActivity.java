@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+
 //Imports Firebase Auth
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
