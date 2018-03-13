@@ -38,7 +38,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-vision:11.8.0'
 
     //Navigation Drawer
-    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:design:26.+'
 }
 //Firebase
 apply plugin: 'com.google.gms.google-services'
