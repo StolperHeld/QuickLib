@@ -10,14 +10,16 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 
 
-public class AddBookActivity extends AppCompatActivity {
+public class AddBookActivity extends NavigationDrawerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_book);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setContentView(R.layout.activity_add_book);
+
+        //navigation Drawer
+        getLayoutInflater().inflate(R.layout.activity_add_book, frameLayout);
+
         final EditText addBookTitle = (EditText) findViewById(R.id.addBookTitle);
         EditText addBookIsbn = (EditText) findViewById(R.id.addBookIsbn);
         EditText addBookAuthor = (EditText) findViewById(R.id.addBookAuthor);

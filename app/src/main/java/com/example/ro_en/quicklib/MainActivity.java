@@ -57,8 +57,6 @@ public class MainActivity extends NavigationDrawerActivity{
 
         //Navgation Drawer - setting title
         getLayoutInflater().inflate(R.layout.activity_main, frameLayout);
-        setTitle("Main");
-
 
         //recyclerView = (RecyclerView) findViewById(R.id.mainRecyclerView);
         //recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<BookShelf>(),MainActivity.this);

@@ -59,13 +59,13 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 if (id == R.id.nav_scanner) {
                     // Handle the camera action
                     startActivity(new Intent(getApplicationContext(), BarcodeScannerActivity.class));
-                } else if (id == R.id.nav_gallery) {
-                    startActivity(new Intent(getApplicationContext(), BarcodeScannerActivity.class));
-                } else if (id == R.id.nav_slideshow) {
-                    startActivity(new Intent(getApplicationContext(), BarcodeScannerActivity.class));
+                } else if (id == R.id.nav_book_add) {
+                    startActivity(new Intent(getApplicationContext(), AddBookActivity.class));
+                } else if (id == R.id.nav_profile) {
+                    startActivity(new Intent(getApplicationContext(), ProfileSettingsActivity.class));
                 } else if (id == R.id.nav_manage) {
                     startActivity(new Intent(getApplicationContext(), BarcodeScannerActivity.class));
-                } else if (id == R.id.nav_camera2) {
+                } else if (id == R.id.nav_manage) {
                     startActivity(new Intent(getApplicationContext(), BarcodeScannerActivity.class));
                 } else if (id == R.id.nav_manage) {
                     startActivity(new Intent(getApplicationContext(), BarcodeScannerActivity.class));
@@ -83,14 +83,6 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         } else {
             super.onBackPressed();
         }
-    }
-
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        navigationView.getMenu().getItem(1).setChecked(true);
     }
 
     @Override

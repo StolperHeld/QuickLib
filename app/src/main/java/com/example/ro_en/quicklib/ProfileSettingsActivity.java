@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-public class ProfileSettingsActivity extends AppCompatActivity {
+public class ProfileSettingsActivity extends NavigationDrawerActivity {
 
     private Button btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser,
             changeEmail, changePassword, sendEmail, remove, signOut;
@@ -29,11 +29,10 @@ public class ProfileSettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profil_settings);
+        //setContentView(R.layout.activity_profil_settings);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.app_name));
-        setSupportActionBar(toolbar);
+        //Navigation Drawer
+        getLayoutInflater().inflate(R.layout.activity_profil_settings, frameLayout);
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();

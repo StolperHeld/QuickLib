@@ -29,9 +29,8 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_barcode_scanner);
 
-        //Navgation Drawer - setting title
+        //Navgation Drawer
         getLayoutInflater().inflate(R.layout.activity_barcode_scanner, frameLayout);
-        setTitle("Scanner");
 
         mResultTextView = findViewById(R.id.result_textview);
 
