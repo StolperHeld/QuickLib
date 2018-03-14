@@ -54,4 +54,5 @@
     app:rippleColor="@android:color/transparent"
     app:srcCompat="@drawable/ic_add_black_24dp" />
 
+    <include layout="@layout/navigation_drawer_layout"/>
 </android.support.design.widget.CoordinatorLayout>

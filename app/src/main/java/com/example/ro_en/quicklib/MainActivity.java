@@ -1,5 +1,6 @@
 package com.example.ro_en.quicklib;
 
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,7 +27,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     //RecyclerView recyclerView; <-- TODO: schauen ob benötigt wird
     //RecyclerViewAdapter recyclerViewAdapter;
     private FirebaseAuth.AuthStateListener authListener;
@@ -74,14 +75,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                item.setChecked(true);
-                drawerLayout.closeDrawers();
-                return true;
-            }
-        });
+        navigationView.setNavigationItemSelectedListener(this);
 
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -112,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        userId = user.getUid().toString();
+        //userId = user.getUid().toString(); TODO: hier wurde ein fehler geworfen
 
 
         User userNew = new User();
@@ -120,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
         //userNew.setUid(userId);
         //userNew.setFirstname("Robert");
         //userRef.document(userId) to Add User to Firestore with Generated User ID
-
 
 
         FloatingActionButton addBookShelfBtn = (FloatingActionButton) findViewById(R.id.addBookShelfBtn);
@@ -174,5 +167,12 @@ public class MainActivity extends AppCompatActivity {
                return true;
        }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        item.setChecked(true);
+        drawerLayout.closeDrawers();
+        return true;
     }
 }
