@@ -101,4 +101,23 @@ public class FirebaseMethods {
                 });
 
     }
+
+    public static void createBook(Book book) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference listRef = db.collection("books");
+        listRef.document()
+                .set(book)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
 }

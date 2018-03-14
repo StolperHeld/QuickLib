@@ -2,20 +2,15 @@ package com.example.ro_en.quicklib;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 //Imports Firebase Auth
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+
 
 
 public class MainActivity extends NavigationDrawerActivity{
@@ -27,28 +22,6 @@ public class MainActivity extends NavigationDrawerActivity{
     private FirebaseAuth auth;
     private String userId;
     private static final String TAG = "MainActivity";
-
-    private void createList(String name) {
-        // Access a Cloud Firestore instance from your Activity
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference listRef = db.collection("lists");
-        Lists lists = new Lists();
-        lists.setName(name);
-        listRef.document()
-                .set(lists)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -21,12 +21,12 @@ public class AddBookActivity extends NavigationDrawerActivity {
         getLayoutInflater().inflate(R.layout.activity_add_book, frameLayout);
 
         final EditText addBookTitle = (EditText) findViewById(R.id.addBookTitle);
-        EditText addBookIsbn = (EditText) findViewById(R.id.addBookIsbn);
-        EditText addBookAuthor = (EditText) findViewById(R.id.addBookAuthor);
-        EditText addBookPublisher = (EditText) findViewById(R.id.addBookPublisher);
-        EditText addBookPublisherDate = (EditText) findViewById(R.id.addBookPublisherDate);
-        EditText addBookPublisherPlace = (EditText) findViewById(R.id.addBookPublisherPlace);
-        EditText addBookPages = (EditText) findViewById(R.id.addBookPages);
+        final EditText addBookIsbn = (EditText) findViewById(R.id.addBookIsbn);
+        final EditText addBookAuthor = (EditText) findViewById(R.id.addBookAuthor);
+        final EditText addBookPublisher = (EditText) findViewById(R.id.addBookPublisher);
+        final EditText addBookPublisherDate = (EditText) findViewById(R.id.addBookPublisherDate);
+        final EditText addBookPublisherPlace = (EditText) findViewById(R.id.addBookPublisherPlace);
+        final EditText addBookPages = (EditText) findViewById(R.id.addBookPages);
         RatingBar addBookRating = (RatingBar) findViewById(R.id.addBookratingBar);
         Button addBookButton = (Button) findViewById(R.id.addBookButton);
 
@@ -35,10 +35,18 @@ public class AddBookActivity extends NavigationDrawerActivity {
             public void onClick(View view) {
                 //Get Book-Elements and Check
                 String bookTitle = addBookTitle.getText().toString();
+                String bookIsbn = addBookIsbn.getText().toString();
+                String bookAuthor = addBookAuthor.getText().toString();
+                String bookPublisher = addBookPublisher.getText().toString();
+                String bookPublisherDate = addBookPublisherDate.getText().toString();
+                String bookPublisherPlace = addBookPublisherPlace.getText().toString();
+                int bookPages = Integer.parseInt(addBookPages.getText().toString());
 
-                //Create Book Object
-                //Book newBook = new Book();
-                //newBook.setBookTitle(bookTitle);
+                Book book = new Book(bookTitle, bookIsbn, bookAuthor, bookPublisher, bookPublisherDate, bookPublisherPlace, bookPages);
+                FirebaseMethods.createBook(book);
+
+                // TODO: Rating
+
 
             }
         });
