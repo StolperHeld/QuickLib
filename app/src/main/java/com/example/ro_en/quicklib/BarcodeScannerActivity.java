@@ -16,7 +16,7 @@ import com.example.ro_en.quicklib.barcode.BarcodeCaptureActivity;
 
 
 
-public class BarcodeScannerActivity extends AppCompatActivity {
+public class BarcodeScannerActivity extends NavigationDrawerActivity {
 
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -27,7 +27,11 @@ public class BarcodeScannerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_barcode_scanner);
+        //setContentView(R.layout.activity_barcode_scanner);
+
+        //Navgation Drawer - setting title
+        getLayoutInflater().inflate(R.layout.activity_barcode_scanner, frameLayout);
+        setTitle("Scanner");
 
         mResultTextView = findViewById(R.id.result_textview);
 

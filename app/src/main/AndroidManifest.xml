@@ -26,16 +26,16 @@
             android:name=".AddBookActivity"
             android:label="@string/title_activity_add_book"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginActivity">
-        </activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".ProfileSettingsActivity" />
-        <activity android:name=".barcode.BarcodeCaptureActivity"/>
+        <activity android:name=".barcode.BarcodeCaptureActivity" />
         <activity android:name=".BarcodeScannerActivity">
             android:label="@string/title_activity_barcode_scanner"
             android:theme="@style/AppTheme.NoActionBar">
-    </activity>
+        </activity>
+        <activity android:name=".NavigationDrawerActivity"></activity>
     </application>
 
 </manifest>
