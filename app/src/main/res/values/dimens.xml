@@ -6,4 +6,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="logo_w_h">100dp</dimen>
     <dimen name="toolbar_size">50dp</dimen>
+    <dimen name="fab_menu_small">45dp</dimen>
+    <dimen name="standard_55">55dp</dimen>
+    <dimen name="standard_105">105dp</dimen>
 </resources>
