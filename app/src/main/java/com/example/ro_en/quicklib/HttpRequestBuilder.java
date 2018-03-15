@@ -13,7 +13,8 @@ import java.net.URL;
 public class HttpRequestBuilder {
 
     public String buildHttpRequest(String ISBN) throws Exception{
-        String url = "https://openlibrary.org/api/books?bibkeys=ISBN:"+ ISBN + "&callback=mycallback";
+        String url = "https://openlibrary.org/api/books?bibkeys=ISBN:"+ISBN +"&jscmd=data&format=json";
+        System.out.println(url);
         String json;
         json = getUrlContent(url) ;
         System.out.println(json);

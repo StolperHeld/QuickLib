@@ -52,6 +52,16 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
                     Point[] p = barcode.cornerPoints;
                     mResultTextView.setText(barcode.displayValue);
 
+                    //Barcode = ISBN --> build HTTP-Request und get content as JSON
+                    HttpRequestBuilder builder = new HttpRequestBuilder();
+                    try {
+                        String httpRequestBuilder = builder.buildHttpRequest(barcode + "");
+                        String content = builder.getUrlContent(httpRequestBuilder);
+                        System.out.println(content);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+
                 } else mResultTextView.setText(R.string.no_barcode_captured);
             } else Log.e(LOG_TAG, String.format(getString(R.string.barcode_error_format),
                     CommonStatusCodes.getStatusCodeString(resultCode)));
