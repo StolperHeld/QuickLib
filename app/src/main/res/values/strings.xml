@@ -41,6 +41,7 @@
     <string name="lbl_forgot_password">Forgot password?</string>
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
     <string name="title_activity_barcode_scanner">BarcodeScannerActivity</string>
+    <string name="results"><u>Results:</u></string>
 
     <!-- Strings related to MainActivity-->
     <string name="scan_barcode_button">Scan barcode</string>

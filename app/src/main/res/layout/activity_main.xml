@@ -1,45 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/toolbar_size"
     android:fitsSystemWindows="true"
     tools:context="com.example.ro_en.quicklib.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <include layout="@layout/activity_navigation_drawer"/>
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
     <include layout="@layout/content_main" />
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addBookShelfBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         app:backgroundTint="@color/secondaryColor"
-        app:layout_anchor="@id/mainRecyclerView"
+        app:layout_anchor="@id/mainListView"
         app:layout_anchorGravity="bottom|end"
+        app:rippleColor="@android:color/transparent"
         app:srcCompat="@drawable/ic_add_black_24dp" />
-    app:rippleColor="@android:color/transparent"
-    app:srcCompat="@drawable/ic_add_black_24dp" />
+
+    />
+    <include layout="@layout/activity_navigation_drawer" />
 
 </android.support.design.widget.CoordinatorLayout>

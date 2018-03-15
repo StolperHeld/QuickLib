@@ -26,9 +26,6 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
 
         frameLayout = (FrameLayout) findViewById(R.id.content_frame);
 
@@ -63,8 +60,8 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                     startActivity(new Intent(getApplicationContext(), AddBookActivity.class));
                 } else if (id == R.id.nav_profile) {
                     startActivity(new Intent(getApplicationContext(), ProfileSettingsActivity.class));
-                } else if (id == R.id.nav_manage) {
-                    startActivity(new Intent(getApplicationContext(), BarcodeScannerActivity.class));
+                } else if (id == R.id.nav_bookshelf) {
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 } else if (id == R.id.nav_manage) {
                     startActivity(new Intent(getApplicationContext(), BarcodeScannerActivity.class));
                 } else if (id == R.id.nav_manage) {
@@ -99,4 +96,6 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
     }
+
+
 }

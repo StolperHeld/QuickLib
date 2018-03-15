@@ -15,7 +15,6 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.example.ro_en.quicklib.barcode.BarcodeCaptureActivity;
 
 
-
 public class BarcodeScannerActivity extends NavigationDrawerActivity {
 
 
@@ -52,9 +51,18 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
                     Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
                     Point[] p = barcode.cornerPoints;
                     mResultTextView.setText(barcode.displayValue);
+
                 } else mResultTextView.setText(R.string.no_barcode_captured);
             } else Log.e(LOG_TAG, String.format(getString(R.string.barcode_error_format),
                     CommonStatusCodes.getStatusCodeString(resultCode)));
         } else super.onActivityResult(requestCode, resultCode, data);
     }
+
+    //TODO: wenn die endgültige Reihenfolge der Items feststeht dies nochmal verbessern
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
+
+}

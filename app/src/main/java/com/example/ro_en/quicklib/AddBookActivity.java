@@ -3,7 +3,6 @@ package com.example.ro_en.quicklib;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,6 +50,13 @@ public class AddBookActivity extends NavigationDrawerActivity {
             }
         });
 
+    }
+
+    //TODO: wenn die endgültige Reihenfolge der Items feststeht dies nochmal verbessern
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navigationView.getMenu().getItem(1).setChecked(true);
     }
 
 }

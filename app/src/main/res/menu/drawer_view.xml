@@ -9,14 +9,15 @@
         <item
             android:id="@+id/nav_book_add"
             android:icon="@drawable/ic_add_circle_24dp"
-            android:title="Your Lists" />
+            android:title="Add a Book" />
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_person_24dp"
             android:title="Profile settings" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:title="slideshow" />
+            android:id="@+id/nav_bookshelf"
+            android:icon="@drawable/ic_library_books_24dp"
+            android:title="Your Lists" />
         <item
             android:id="@+id/nav_manage"
             android:title="tools" />

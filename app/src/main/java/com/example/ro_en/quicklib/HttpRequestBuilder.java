@@ -1,7 +1,6 @@
 package com.example.ro_en.quicklib;
 
 import android.content.SyncStatusObserver;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -16,7 +15,7 @@ public class HttpRequestBuilder {
     public String buildHttpRequest(String ISBN) throws Exception{
         String url = "https://openlibrary.org/api/books?bibkeys=ISBN:"+ ISBN + "&callback=mycallback";
         String json;
-        json = getUrlContent(url);
+        json = getUrlContent(url) ;
         System.out.println(json);
         return url;
     }
