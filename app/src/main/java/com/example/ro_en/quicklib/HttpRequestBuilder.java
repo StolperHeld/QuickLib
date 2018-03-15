@@ -14,22 +14,18 @@ import java.net.URL;
 
 public class HttpRequestBuilder extends AsyncTask<String, Void, String> {
 
-    public String buildHttpRequest(String ISBN) throws Exception{
-        String url = "https://openlibrary.org/api/books?bibkeys=ISBN:"+ISBN +"&jscmd=data&format=json";
-        String json;
-        json = doInBackground(url) ;
-        System.out.println("hier: " + url);
-        return json;
-    }
 
     @Override
-    protected String doInBackground(String... sUrl){
+    protected String doInBackground(String... ISBN){
+        String sUrl = "http://openlibrary.org/api/books?bibkeys=ISBN:"+ISBN[0] +"&jscmd=data&format=json";
+        //String sUrl = "http://openlibrary.org/api/books?bibkeys=ISBN:"+ISBN[0] +"&callback=mycallback";
+        System.out.println("URL " + sUrl);
         String content = "", line;
         try{
-            URL url = new URL(sUrl[0]);
+            URL url = new URL(sUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setDoOutput(true);
+           // connection.setDoOutput(true);
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
             connection.connect();
@@ -40,6 +36,11 @@ public class HttpRequestBuilder extends AsyncTask<String, Void, String> {
         } catch(Exception e){
             e.printStackTrace();
         }
+        //System.out.println("doinBack " + content);
         return content;
+    }
+    @Override
+    protected void onPostExecute(String content){
+       // System.out.println("onPost " + content);
     }
 }

@@ -55,8 +55,8 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
                     //Barcode = ISBN --> build HTTP-Request und get content as JSON
                     HttpRequestBuilder builder = new HttpRequestBuilder();
                     try {
-                        String httpRequestBuilder = builder.buildHttpRequest( barcode.displayValue);
-                        System.out.println("hier: " + httpRequestBuilder);
+                        builder.execute(barcode.displayValue);
+                        //System.out.println("hier: " + json);
                     }catch(Exception e){
                         e.printStackTrace();
                     }
