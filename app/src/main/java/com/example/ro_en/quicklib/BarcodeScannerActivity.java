@@ -56,8 +56,7 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
                     HttpRequestBuilder builder = new HttpRequestBuilder();
                     try {
                         String httpRequestBuilder = builder.buildHttpRequest( barcode.displayValue);
-                        String content = builder.getUrlContent(httpRequestBuilder);
-                        System.out.println(content);
+                        System.out.println("hier: " + httpRequestBuilder);
                     }catch(Exception e){
                         e.printStackTrace();
                     }

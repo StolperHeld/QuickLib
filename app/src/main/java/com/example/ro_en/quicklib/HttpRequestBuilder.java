@@ -16,11 +16,10 @@ public class HttpRequestBuilder extends AsyncTask<String, Void, String> {
 
     public String buildHttpRequest(String ISBN) throws Exception{
         String url = "https://openlibrary.org/api/books?bibkeys=ISBN:"+ISBN +"&jscmd=data&format=json";
-        System.out.println(url);
         String json;
         json = doInBackground(url) ;
-        System.out.println(json);
-        return url;
+        System.out.println("hier: " + url);
+        return json;
     }
 
     @Override
