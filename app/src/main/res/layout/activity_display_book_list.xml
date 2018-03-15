@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ro_en.quicklib.DisplayBookListActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <android.support.v7.app.AlertController.RecycleListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.app.AlertController.RecycleListView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_scann_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_camera_enhance_24dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_add_circle_24dp" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

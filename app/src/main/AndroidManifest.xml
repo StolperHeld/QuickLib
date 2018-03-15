@@ -26,7 +26,7 @@
             android:name=".AddBookActivity"
             android:label="@string/title_activity_add_book"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".ProfileSettingsActivity" />
@@ -35,7 +35,9 @@
             android:label="@string/title_activity_barcode_scanner"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".NavigationDrawerActivity"></activity>
+        <activity android:name=".NavigationDrawerActivity" />
+        <activity android:name=".DisplayBookActivity" />
+        <activity android:name=".DisplayBookListActivity"></activity>
     </application>
 
 </manifest>

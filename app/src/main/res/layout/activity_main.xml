@@ -19,9 +19,6 @@
         app:layout_anchor="@id/mainListView"
         app:layout_anchorGravity="bottom|end"
         app:rippleColor="@android:color/transparent"
-        app:srcCompat="@drawable/ic_add_black_24dp" /><![CDATA[
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 
-    />
-
-]]>
 </android.support.design.widget.CoordinatorLayout>
