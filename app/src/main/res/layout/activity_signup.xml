@@ -9,7 +9,6 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/primaryDarkColor"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
@@ -20,7 +19,7 @@
             android:layout_height="@dimen/logo_w_h"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/book_icon" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -34,7 +33,7 @@
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/primaryColor" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -53,7 +52,7 @@
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/primaryColor" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -63,9 +62,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/secondaryColor"
+            android:background="@color/primaryColor"
             android:text="@string/action_sign_in_short"
-            android:textColor="@android:color/black"
+            android:textColor="@color/primaryTextColor"
             android:textStyle="bold" />
 
         <Button
@@ -76,7 +75,7 @@
             android:background="@null"
             android:text="@string/btn_forgot_password"
             android:textAllCaps="false"
-            android:textColor="@color/secondaryColor" />
+            android:textColor="@color/primaryColor" />
 
         <!-- Link to Login Screen -->
 
@@ -88,7 +87,7 @@
             android:background="@null"
             android:text="@string/btn_link_to_login"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/secondaryColor"
             android:textSize="15dp" />
     </LinearLayout>
 
