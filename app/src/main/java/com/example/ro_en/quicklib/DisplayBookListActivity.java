@@ -51,7 +51,7 @@ public class DisplayBookListActivity extends AppCompatActivity {
         fabLayout2.setVisibility(View.VISIBLE);
         fabBGLayout.setVisibility(View.VISIBLE);
 
-        fabMenuButton.animate().rotationBy(180);
+        fabMenuButton.animate().rotationBy(45);
         fabLayout1.animate().translationY(-getResources().getDimension(R.dimen.standard_70));
         fabLayout2.animate().translationY(-getResources().getDimension(R.dimen.standard_140));
     }
@@ -59,7 +59,7 @@ public class DisplayBookListActivity extends AppCompatActivity {
     private void closeFABMenu(){
         isFABOpen=false;
         fabBGLayout.setVisibility(View.GONE);
-        fabMenuButton.animate().rotationBy(-180);
+        fabMenuButton.animate().rotationBy(-45);
         fabLayout1.animate().translationY(0);
         fabLayout2.animate().translationY(0).setListener(new Animator.AnimatorListener() {
             @Override
