@@ -24,7 +24,7 @@ public class DisplayBookListActivity extends AppCompatActivity {
         fabMenuButton = (FloatingActionButton) findViewById(R.id.fab_menu);
         fabAddBook = (FloatingActionButton) findViewById(R.id.fab_add_book);
         fabScannBook = (FloatingActionButton) findViewById(R.id.fab_scann_book);
-        fabBGLayout = findViewById(R.id.fabBGLayout);
+        fabBGLayout = (View) findViewById(R.id.fabBGLayout);
 
         fabMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
