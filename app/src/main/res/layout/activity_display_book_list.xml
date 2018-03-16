@@ -19,8 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_marginBottom="@dimen/standard_30"
-            android:layout_marginRight="@dimen/standard_30"
+            android:layout_marginBottom="@dimen/standard_25"
+            android:layout_marginRight="@dimen/standard_25"
             android:clipToPadding="false"
             android:gravity="center_vertical"
             android:padding="@dimen/standard_12"
@@ -29,24 +29,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fab_add_book" />
+                android:text="@string/fab_add_book"
+                android:background="@drawable/fab_menu_text_background"/>
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab_add_book"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:tint="@android:color/white"
                 app:fabSize="mini"
                 app:srcCompat="@drawable/ic_add_circle_24dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/fabLayout_scann_book"
+            android:id="@+id/fabLayout_scan_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_marginBottom="@dimen/standard_30"
-            android:layout_marginRight="@dimen/standard_30"
+            android:layout_marginBottom="@dimen/standard_25"
+            android:layout_marginRight="@dimen/standard_25"
             android:clipToPadding="false"
             android:gravity="center_vertical"
             android:padding="@dimen/standard_12"
@@ -55,10 +57,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fab_scann_book" />
+                android:text="@string/fab_scan_book"
+                android:background="@drawable/fab_menu_text_background"/>
 
             <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_scann_book"
+                android:id="@+id/fab_scan_book"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

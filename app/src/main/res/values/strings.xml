@@ -61,6 +61,6 @@
     <!-- Fab-Menu -->
     <string name="close_fab_menu">close menu</string>
     <string name="fab_add_book">add book</string>
-    <string name="fab_scann_book">scann book-barcode</string>
+    <string name="fab_scan_book">scan book-barcode</string>
 
 </resources>

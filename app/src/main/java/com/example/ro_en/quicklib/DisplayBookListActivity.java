@@ -1,15 +1,16 @@
 package com.example.ro_en.quicklib;
 
 import android.animation.Animator;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.LinearLayout;
 
-public class DisplayBookListActivity extends AppCompatActivity {
+public class DisplayBookListActivity extends NavigationDrawerActivity {
 
-    FloatingActionButton fabMenuButton, fabAddBook, fabScannBook;
+    FloatingActionButton fabMenuButton, fabAddBook, fabScanBook;
     LinearLayout fabLayout1, fabLayout2;
     View fabBGLayout;
     boolean isFABOpen=false;
@@ -17,13 +18,34 @@ public class DisplayBookListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_book_list);
+        //setContentView(R.layout.activity_display_book_list);
+
+        //navigation Drawer
+        getLayoutInflater().inflate(R.layout.activity_display_book_list, frameLayout);
 
         fabLayout1= (LinearLayout) findViewById(R.id.fabLayout_add_book);
-        fabLayout2= (LinearLayout) findViewById(R.id.fabLayout_scann_book);
+        fabLayout2= (LinearLayout) findViewById(R.id.fabLayout_scan_book);
         fabMenuButton = (FloatingActionButton) findViewById(R.id.fab_menu);
         fabAddBook = (FloatingActionButton) findViewById(R.id.fab_add_book);
-        fabScannBook = (FloatingActionButton) findViewById(R.id.fab_scann_book);
+        fabScanBook = (FloatingActionButton) findViewById(R.id.fab_scan_book);
+
+        final AlphaAnimation alphaAnimation = new AlphaAnimation(1F, 0.5F);
+
+        fabAddBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AddBookActivity.class));
+                v.startAnimation(alphaAnimation);
+            }
+        });
+
+        fabScanBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), BarcodeScannerActivity.class));
+                v.startAnimation(alphaAnimation);
+            }
+        });
         fabBGLayout = (View) findViewById(R.id.fabBGLayout);
 
         fabMenuButton.setOnClickListener(new View.OnClickListener() {
@@ -51,15 +73,15 @@ public class DisplayBookListActivity extends AppCompatActivity {
         fabLayout2.setVisibility(View.VISIBLE);
         fabBGLayout.setVisibility(View.VISIBLE);
 
-        fabMenuButton.animate().rotationBy(45);
-        fabLayout1.animate().translationY(-getResources().getDimension(R.dimen.standard_70));
-        fabLayout2.animate().translationY(-getResources().getDimension(R.dimen.standard_140));
+        fabMenuButton.animate().rotationBy(135);
+        fabLayout1.animate().translationY(-getResources().getDimension(R.dimen.standard_55));
+        fabLayout2.animate().translationY(-getResources().getDimension(R.dimen.standard_100));
     }
 
     private void closeFABMenu(){
         isFABOpen=false;
         fabBGLayout.setVisibility(View.GONE);
-        fabMenuButton.animate().rotationBy(-45);
+        fabMenuButton.animate().rotationBy(-135);
         fabLayout1.animate().translationY(0);
         fabLayout2.animate().translationY(0).setListener(new Animator.AnimatorListener() {
             @Override
