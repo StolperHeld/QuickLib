@@ -58,4 +58,9 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
 
+    <!-- Fab-Menu -->
+    <string name="close_fab_menu">close menu</string>
+    <string name="fab_add_book">add book</string>
+    <string name="fab_scann_book">scann book-barcode</string>
+
 </resources>
