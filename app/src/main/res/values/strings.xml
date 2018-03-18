@@ -63,4 +63,8 @@
     <string name="fab_add_book">add book</string>
     <string name="fab_scan_book">scan book-barcode</string>
 
+    <!-- Recycler View -->
+    <string name="message_no_results">Oops, couldn\'t find any results\nthat matched your filter</string>
+    <!-- TODO: muss noch geändert werden -->
+
 </resources>

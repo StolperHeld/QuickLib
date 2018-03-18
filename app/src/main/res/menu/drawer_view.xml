@@ -21,5 +21,12 @@
         <item
             android:id="@+id/nav_manage"
             android:title="tools" />
+        <item
+            android:id="@+id/nav_manage2"
+            android:title="tools" />
+        <item
+            android:id="@+id/nav_sign_out"
+            android:title="Logout"
+            android:icon="@drawable/ic_exit_to_app_24dp"/>
     </group>
 </menu>

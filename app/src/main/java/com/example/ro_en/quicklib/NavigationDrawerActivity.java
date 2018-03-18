@@ -13,6 +13,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class NavigationDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout drawerLayout;
@@ -64,8 +66,11 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 } else if (id == R.id.nav_manage) {
                     startActivity(new Intent(getApplicationContext(), BarcodeScannerActivity.class));
-                } else if (id == R.id.nav_manage) {
-                    startActivity(new Intent(getApplicationContext(), BarcodeScannerActivity.class));
+                } else if (id == R.id.nav_sign_out) {
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
+                    auth.signOut();
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    //TODO: hier mal Robert fragen ob das so ok ist
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

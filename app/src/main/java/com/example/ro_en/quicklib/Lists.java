@@ -8,6 +8,13 @@ public class Lists {
     private String name;
     private int[] books;
 
+    public Lists(){
+
+    }
+    public Lists(String name){
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

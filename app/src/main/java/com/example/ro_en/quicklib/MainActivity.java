@@ -4,6 +4,10 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 
@@ -11,6 +15,8 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends NavigationDrawerActivity{
@@ -22,6 +28,10 @@ public class MainActivity extends NavigationDrawerActivity{
     private FirebaseAuth auth;
     private String userId;
     private static final String TAG = "MainActivity";
+    private List<Lists> listsList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private ListAdapter listAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +98,29 @@ public class MainActivity extends NavigationDrawerActivity{
                 alertDialog.show();
             }
         });
+
+        recyclerView = (RecyclerView) findViewById(R.id.mainRecyclerView);
+
+        listAdapter = new ListAdapter(listsList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        recyclerView.setAdapter(listAdapter);
+
+        prepareListsData();
     }
+
+    private void prepareListsData() {
+        Lists lists = new Lists();//<-- TODO: hier kann eine Liste angelegt werden
+        listsList.add(lists);
+
+        lists = new Lists("testListName");
+        listsList.add(lists);
+
+        listAdapter.notifyDataSetChanged();
+    }
+
 
     //TODO: wenn die endgültige Reihenfolge der Items feststeht dies nochmal verbessern
     @Override
