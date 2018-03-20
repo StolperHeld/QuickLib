@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ro_en.quicklib.barcode.BarcodeCaptureActivity;
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -50,7 +51,13 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
                 if (data != null) {
                     Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
                     Point[] p = barcode.cornerPoints;
-                    mResultTextView.setText(barcode.displayValue);
+                    IsbnValidation validation = new IsbnValidation();
+                    if(validation.validateIsbn(barcode.displayValue)){
+                        mResultTextView.setText(barcode.displayValue);
+                    }else {
+                        Toast.makeText(this,"Barcode is no ISBN",Toast.LENGTH_LONG).show();
+                    }
+
 
                     //Barcode = ISBN --> build HTTP-Request und get content as JSON
                     HttpRequestBuilder builder = new HttpRequestBuilder();

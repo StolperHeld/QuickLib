@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 
 public class AddBookActivity extends NavigationDrawerActivity {
@@ -41,12 +42,15 @@ public class AddBookActivity extends NavigationDrawerActivity {
                 String bookPublisherPlace = addBookPublisherPlace.getText().toString();
                 int bookPages = Integer.parseInt(addBookPages.getText().toString());
 
-                Book book = new Book(bookTitle, bookIsbn, bookAuthor, bookPublisher, bookPublisherDate, bookPublisherPlace, bookPages);
-                FirebaseMethods.createBook(book);
-
+                IsbnValidation validation = new IsbnValidation();
+                if(validation.validateIsbn(bookIsbn)){
+                    Book book = new Book(bookTitle, bookIsbn, bookAuthor, bookPublisher, bookPublisherDate, bookPublisherPlace, bookPages);
+                    FirebaseMethods.createBook(book);
+                }else {
+                    Toast.makeText(AddBookActivity.this, "entered ISBN is no ISBN", Toast.LENGTH_LONG).show();
+                }
+                //TODO
                 // TODO: Rating
-
-
             }
         });
 
