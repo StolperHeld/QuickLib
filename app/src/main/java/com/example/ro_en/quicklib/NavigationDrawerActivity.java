@@ -70,7 +70,6 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     auth.signOut();
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                    //TODO: hier mal Robert fragen ob das so ok ist
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

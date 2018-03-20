@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:focusable="true"
+    android:id="@+id/list_row_view"
     android:orientation="vertical">
 
     <TextView

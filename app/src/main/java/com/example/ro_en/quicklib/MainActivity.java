@@ -8,8 +8,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 //Imports Firebase Auth
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,9 +24,6 @@ import java.util.List;
 
 public class MainActivity extends NavigationDrawerActivity{
 
-    //RecyclerView recyclerView; <-- TODO: schauen ob benötigt wird
-    //RecyclerViewAdapter recyclerViewAdapter;
-
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     private String userId;
@@ -31,6 +31,8 @@ public class MainActivity extends NavigationDrawerActivity{
     private List<Lists> listsList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ListAdapter listAdapter;
+    View ChildView;
+    int RecyclerViewItemPosition;
 
 
     @Override
@@ -101,6 +103,10 @@ public class MainActivity extends NavigationDrawerActivity{
 
         recyclerView = (RecyclerView) findViewById(R.id.mainRecyclerView);
 
+        //Adding items to RecyclerView
+        listsList = new ArrayList<>();
+        listsList.add(new Lists("Hallo Welt"));
+
         listAdapter = new ListAdapter(listsList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -108,17 +114,41 @@ public class MainActivity extends NavigationDrawerActivity{
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(listAdapter);
 
-        prepareListsData();
-    }
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
 
-    private void prepareListsData() {
-        Lists lists = new Lists();//<-- TODO: hier kann eine Liste angelegt werden
-        listsList.add(lists);
+            GestureDetector gestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener() {
 
-        lists = new Lists("testListName");
-        listsList.add(lists);
+                @Override public boolean onSingleTapUp(MotionEvent motionEvent) {
 
-        listAdapter.notifyDataSetChanged();
+                    return true;
+                }
+
+            });
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView Recyclerview, MotionEvent motionEvent) {
+
+                ChildView = Recyclerview.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+
+                if(ChildView != null && gestureDetector.onTouchEvent(motionEvent)) {
+
+                    RecyclerViewItemPosition = Recyclerview.getChildAdapterPosition(ChildView);
+
+                    Toast.makeText(MainActivity.this, listsList.get(RecyclerViewItemPosition).toString(), Toast.LENGTH_LONG).show();
+                }
+
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView Recyclerview, MotionEvent motionEvent) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
     }
 
 

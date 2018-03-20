@@ -22,7 +22,6 @@
             android:id="@+id/mainRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/filter_bar_container"
             android:background="@android:color/white"
             android:scrollbars="vertical"/>
 
