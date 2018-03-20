@@ -67,4 +67,11 @@
     <string name="message_no_results">Oops, couldn\'t find any results\nthat matched your filter</string>
     <!-- TODO: muss noch geändert werden -->
 
+    <string name="title_text"><u>title:</u></string>
+    <string name="isbn_text"><u>isbn:</u></string>
+    <string name="author_text"><u>author:</u></string>
+    <string name="publisher_text"><u>publisher:</u></string>
+    <string name="publisher_date_text"><u>publishdate:</u></string>
+    <string name="publisher_place_text"><u>publishplace:</u></string>
+    <string name="page_text"><u>pages:</u></string>
 </resources>

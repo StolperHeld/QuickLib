@@ -5,45 +5,104 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 <!--TODO: muss noch überarbeitet werden, da es sich sonst vll überlappt-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_text"
+        android:layout_alignParentTop="true"
+        android:id="@+id/title_text"/>
     <TextView
         android:id="@+id/title_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:paddingLeft="5dp"
+        android:layout_toRightOf="@id/title_text"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/isbn_text"
+        android:layout_below="@id/title_book"
+        android:id="@+id/isbn_text"/>
     <TextView
         android:id="@+id/isbn_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title_book" />
+        android:layout_below="@id/title_book"
+        android:paddingLeft="5dp"
+        android:layout_toRightOf="@id/isbn_text"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/author_text"
+        android:layout_below="@id/isbn_book"
+        android:id="@+id/author_text"/>
     <TextView
         android:id="@+id/author_book"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/isbn_book"
+        android:paddingLeft="5dp"
+        android:layout_toRightOf="@id/author_text"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/publisher_text"
+        android:layout_below="@id/author_book"
+        android:id="@+id/publisher_text"/>
     <TextView
         android:id="@+id/publisher_book"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/author_book"
+        android:paddingLeft="5dp"
+        android:layout_toRightOf="@id/publisher_text"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/publisher_date_text"
+        android:layout_below="@id/publisher_book"
+        android:id="@+id/publisher_date_text"/>
     <TextView
         android:id="@+id/publisher_date_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title_book" />
+        android:layout_below="@id/publisher_book"
+        android:paddingLeft="5dp"
+        android:layout_toRightOf="@id/publisher_date_text"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/publisher_place_text"
+        android:layout_below="@id/publisher_date_book"
+        android:id="@+id/publisher_place_text"/>
     <TextView
         android:id="@+id/publisher_place_book"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/publisher_date_book"
+        android:paddingLeft="5dp"
+        android:layout_toRightOf="@id/publisher_place_text"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/page_text"
+        android:layout_toLeftOf="@id/page_book"
+        android:id="@+id/page_text"/>
     <TextView
         android:id="@+id/page_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingRight="5dp"
         android:layout_alignParentRight="true" />
 
 </RelativeLayout>

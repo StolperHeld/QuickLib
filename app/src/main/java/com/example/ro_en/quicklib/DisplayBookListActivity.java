@@ -8,9 +8,13 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +29,9 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
     private List<Book> bookList = new ArrayList<>();
     private RecyclerView bookListRecyclerView;
     private BookListAdapter bookListAdapter;
+    int RecyclerViewItemPosition;
+    View ChildView;
+    TextView listNameFromMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +86,17 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
 
         bookListRecyclerView = (RecyclerView) findViewById(R.id.display_book_list_recycler_View);
 
+        listNameFromMain = findViewById(R.id.list_name_from_main);
+        listNameFromMain.setText("hier kommt der Intent rein");//TODO: set Extra vom Intent in this TextView
+
+        //Adding items to RecyclerView
+        bookList = new ArrayList<>();
+        bookList.add(new Book("hallo","1234567891",
+                "thomas", "schaffran","12-06-1995",
+                "maulbronn", 155));
+
+        //TODO: hier können Daten in die Liste eingetragen werden :D
+
         bookListAdapter = new BookListAdapter(bookList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         bookListRecyclerView.setLayoutManager(mLayoutManager);
@@ -86,20 +104,44 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
         bookListRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         bookListRecyclerView.setAdapter(bookListAdapter);
 
-        prepareBookData();
-    }
+        bookListRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
 
-    private void prepareBookData() {
-        Book book = new Book("hallo","1234567891",
-                "thomas", "schaffran","12-06-1995",
-                "maulbronn", 155);
-        //TODO: hier kommen später die Daten rein
-        bookList.add(book);
+            GestureDetector gestureDetector = new GestureDetector(DisplayBookListActivity.this, new GestureDetector.SimpleOnGestureListener() {
 
-        book = new Book();
-        bookList.add(book);
+                @Override
+                public boolean onSingleTapUp(MotionEvent motionEvent) {
 
-        bookListAdapter.notifyDataSetChanged();
+                    return true;
+                }
+
+            });
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView Recyclerview, MotionEvent motionEvent) {
+
+                ChildView = Recyclerview.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+
+                if(ChildView != null && gestureDetector.onTouchEvent(motionEvent)) {
+
+                    RecyclerViewItemPosition = Recyclerview.getChildAdapterPosition(ChildView);
+
+                    //TODO:hier kann eine Intent erzeugt werden, der mit dem Namen des Buchs auf die AnzeigeActivity verweißt
+
+                    Toast.makeText(DisplayBookListActivity.this, bookList.get(RecyclerViewItemPosition).toString(), Toast.LENGTH_LONG).show();
+                }
+
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView Recyclerview, MotionEvent motionEvent) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
     }
 
     private void showFABMenu(){

@@ -31,7 +31,7 @@ public class MainActivity extends NavigationDrawerActivity{
     private List<Lists> listsList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ListAdapter listAdapter;
-    View ChildView;
+    View ChildViewList;
     int RecyclerViewItemPosition;
 
 
@@ -107,6 +107,8 @@ public class MainActivity extends NavigationDrawerActivity{
         listsList = new ArrayList<>();
         listsList.add(new Lists("Hallo Welt"));
 
+        //TODO: hier können Daten in die Liste eingetragen werden :D
+
         listAdapter = new ListAdapter(listsList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -118,7 +120,8 @@ public class MainActivity extends NavigationDrawerActivity{
 
             GestureDetector gestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener() {
 
-                @Override public boolean onSingleTapUp(MotionEvent motionEvent) {
+                @Override
+                public boolean onSingleTapUp(MotionEvent motionEvent) {
 
                     return true;
                 }
@@ -127,11 +130,13 @@ public class MainActivity extends NavigationDrawerActivity{
             @Override
             public boolean onInterceptTouchEvent(RecyclerView Recyclerview, MotionEvent motionEvent) {
 
-                ChildView = Recyclerview.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+                ChildViewList = Recyclerview.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
 
-                if(ChildView != null && gestureDetector.onTouchEvent(motionEvent)) {
+                if(ChildViewList != null && gestureDetector.onTouchEvent(motionEvent)) {
 
-                    RecyclerViewItemPosition = Recyclerview.getChildAdapterPosition(ChildView);
+                    RecyclerViewItemPosition = Recyclerview.getChildAdapterPosition(ChildViewList);
+
+                    //TODO:hier kann eine Intent erzeugt werden, der mit dem Namen des List auf die DisplayBookList verweißt
 
                     Toast.makeText(MainActivity.this, listsList.get(RecyclerViewItemPosition).toString(), Toast.LENGTH_LONG).show();
                 }
