@@ -1,7 +1,9 @@
 package com.example.ro_en.quicklib;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,7 +19,10 @@ import android.widget.Toast;
 //Imports Firebase Auth
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +35,7 @@ public class MainActivity extends NavigationDrawerActivity{
     private static final String TAG = "MainActivity";
     private List<Lists> listsList = new ArrayList<>();
     private RecyclerView recyclerView;
+
     private ListAdapter listAdapter;
     View ChildViewList;
     int RecyclerViewItemPosition;
@@ -43,21 +49,25 @@ public class MainActivity extends NavigationDrawerActivity{
         //Navgation Drawer - setting title
         getLayoutInflater().inflate(R.layout.activity_main, frameLayout);
 
-        //recyclerView = (RecyclerView) findViewById(R.id.mainRecyclerView);
-        //recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<BookShelf>(),MainActivity.this);
-
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //userId = user.getUid().toString(); TODO: hier wurde ein fehler geworfen
 
+        authListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    // user auth state is changed - user is null
+                    // launch login activity
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    finish();
+                }
+            }
+        };
 
-        User userNew = new User();
-
-        //userNew.setUid(userId);
-        //userNew.setFirstname("Robert");
-        //userRef.document(userId) to Add User to Firestore with Generated User ID
 
 
         FloatingActionButton addBookShelfBtn = (FloatingActionButton) findViewById(R.id.addBookShelfBtn);
@@ -77,17 +87,6 @@ public class MainActivity extends NavigationDrawerActivity{
                     public void onClick(DialogInterface dialog, int which) {
                         String listName = bookShelfname.getText().toString();
                         FirebaseMethods.createList(listName);
-                        /*
-                        HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
-                        String output = null;
-                        try {
-                            output = requestBuilder.buildHttpRequest("0451526538");
-                            System.out.println(output);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        */
-
                     }
                 });
 
@@ -104,7 +103,12 @@ public class MainActivity extends NavigationDrawerActivity{
         recyclerView = (RecyclerView) findViewById(R.id.mainRecyclerView);
 
         //Adding items to RecyclerView
+        // Firestore
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+
         listsList = new ArrayList<>();
+        //listsList = firestore.collection("lists").whereEqualTo().; TODO: FIRESTORE ANBIDUNG
         listsList.add(new Lists("Hallo Welt"));
 
         //TODO: hier können Daten in die Liste eingetragen werden :D
@@ -162,5 +166,18 @@ public class MainActivity extends NavigationDrawerActivity{
     protected void onResume() {
         super.onResume();
         navigationView.getMenu().getItem(3).setChecked(true);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(authListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (authListener != null) {
+            auth.removeAuthStateListener(authListener);
+        }
     }
 }

@@ -1,8 +1,10 @@
 package com.example.ro_en.quicklib;
 
-import android.content.SyncStatusObserver;
+
 import android.os.AsyncTask;
 
+import com.example.ro_en.quicklib.utils.AsyncResponse;
+import com.example.ro_en.quicklib.utils.JsonToBook;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -12,12 +14,19 @@ import java.net.URL;
  * Created by thoma on 11.03.2018.
  */
 
-public class HttpRequestBuilder extends AsyncTask<String, Void, String> {
+public class HttpRequestBuilder extends AsyncTask<String, Book, String> {
+
+    public AsyncResponse delegate = null;//Call back interface
+
+    public HttpRequestBuilder(AsyncResponse asyncResponse) {
+        delegate = asyncResponse;//Assigning call back interfacethrough constructor
+    }
+
 
 
     @Override
     protected String doInBackground(String... ISBN){
-        String sUrl = "http://openlibrary.org/api/books?bibkeys=ISBN:"+ISBN[0] +"&jscmd=data&format=json";
+        String sUrl = "http://openlibrary.org/api/books?bibkeys=ISBN:" + ISBN[0] + "&jscmd=data&format=json";
         //String sUrl = "http://openlibrary.org/api/books?bibkeys=ISBN:"+ISBN[0] +"&callback=mycallback";
         System.out.println("URL " + sUrl);
         String content = "", line;
@@ -41,6 +50,11 @@ public class HttpRequestBuilder extends AsyncTask<String, Void, String> {
     }
     @Override
     protected void onPostExecute(String content){
-       // System.out.println("onPost " + content);
+        try {
+            Book book = JsonToBook.jsontoBook(content);
+            delegate.processFinish(book);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

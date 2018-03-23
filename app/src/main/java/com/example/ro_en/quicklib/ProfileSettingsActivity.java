@@ -37,7 +37,6 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
 
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -50,6 +49,7 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
                 }
             }
         };
+
 
         btnChangeEmail = (Button) findViewById(R.id.change_email_button);
         btnChangePassword = (Button) findViewById(R.id.change_password_button);
