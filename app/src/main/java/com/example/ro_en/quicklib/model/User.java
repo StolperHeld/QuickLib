@@ -1,4 +1,4 @@
-package com.example.ro_en.quicklib;
+package com.example.ro_en.quicklib.model;
 
 import java.util.List;
 

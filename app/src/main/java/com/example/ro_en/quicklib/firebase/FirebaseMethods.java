@@ -1,4 +1,4 @@
-package com.example.ro_en.quicklib;
+package com.example.ro_en.quicklib.firebase;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.List;
 
+import com.example.ro_en.quicklib.model.User;
+import com.example.ro_en.quicklib.model.Book;
+import com.example.ro_en.quicklib.model.Lists;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,14 +48,13 @@ public class FirebaseMethods {
         CollectionReference listRef = db.collection("lists");
         Lists list = new Lists();
         list.setName(name);
-        final String id = createId();
-        listRef.document(id)
+        list.setUid(userId);
+        listRef.document()
                 .set(list)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
-                        addListToUser(id);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

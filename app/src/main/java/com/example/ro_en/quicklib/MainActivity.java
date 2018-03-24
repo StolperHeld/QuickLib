@@ -6,10 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,12 +16,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 //Imports Firebase Auth
+import com.example.ro_en.quicklib.firebase.FirebaseMethods;
+import com.example.ro_en.quicklib.firebase.ListListAdapter;
+import com.example.ro_en.quicklib.model.Lists;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,28 +38,34 @@ public class MainActivity extends NavigationDrawerActivity{
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     private String userId;
-    private static final String TAG = "MainActivity";
-    private List<Lists> listsList = new ArrayList<>();
+    private static final String TAG = "MainActivity-Log";
+    private List<Lists> listsList;
     private RecyclerView recyclerView;
-
-    private ListAdapter listAdapter;
+    private ListListAdapter listsListAdapter;
     View ChildViewList;
     int RecyclerViewItemPosition;
+    private Query mQuery;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-
         //Navgation Drawer - setting title
         getLayoutInflater().inflate(R.layout.activity_main, frameLayout);
 
-        //get firebase auth instance
+        listsList = new ArrayList<>();
+        listsListAdapter = new ListListAdapter(getApplicationContext(), listsList);
+        recyclerView = (RecyclerView) findViewById(R.id.mainRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(listsListAdapter);
+
+
+
+
         auth = FirebaseAuth.getInstance();
-        //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        //userId = user.getUid().toString(); TODO: hier wurde ein fehler geworfen
+
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -100,68 +112,41 @@ public class MainActivity extends NavigationDrawerActivity{
             }
         });
 
-        recyclerView = (RecyclerView) findViewById(R.id.mainRecyclerView);
+        if (user != null) {
+            userId = user.getUid();
+            FirebaseFirestore mFireStore = FirebaseFirestore.getInstance();
+            mQuery = mFireStore.collection("lists").whereEqualTo("uid", userId);
 
-        //Adding items to RecyclerView
-        // Firestore
-        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+            //mQuery = mFireStore.collection("lists");
 
-
-        listsList = new ArrayList<>();
-        //listsList = firestore.collection("lists").whereEqualTo().; TODO: FIRESTORE ANBIDUNG
-        listsList.add(new Lists("Hallo Welt"));
-
-        //TODO: hier können Daten in die Liste eingetragen werden :D
-
-        listAdapter = new ListAdapter(listsList);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        recyclerView.setAdapter(listAdapter);
-
-        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-
-            GestureDetector gestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener() {
-
+            mQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
-                public boolean onSingleTapUp(MotionEvent motionEvent) {
-
-                    return true;
+                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                    if (e != null) {
+                        Log.d(TAG, "Error : " + e.getMessage());
+                        return;
+                    }
+                    for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
+                        if (doc.getType() == DocumentChange.Type.ADDED) {
+                            String listName = doc.getDocument().getString("name");
+                            Log.d(TAG, "Name : " + listName);
+                            String listId = doc.getDocument().getId();
+                            Lists list = doc.getDocument().toObject(Lists.class).withId(listId);
+                            listsList.add(list);
+                            listsListAdapter.notifyDataSetChanged();
+                        }
+                    }
                 }
-
             });
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView Recyclerview, MotionEvent motionEvent) {
+        }
 
-                ChildViewList = Recyclerview.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
 
-                if(ChildViewList != null && gestureDetector.onTouchEvent(motionEvent)) {
-
-                    RecyclerViewItemPosition = Recyclerview.getChildAdapterPosition(ChildViewList);
-
-                    //TODO:hier kann eine Intent erzeugt werden, der mit dem Namen des List auf die DisplayBookList verweißt
-
-                    Toast.makeText(MainActivity.this, listsList.get(RecyclerViewItemPosition).toString(), Toast.LENGTH_LONG).show();
-                }
-
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView Recyclerview, MotionEvent motionEvent) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
     }
 
 
     //TODO: wenn die endgültige Reihenfolge der Items feststeht dies nochmal verbessern
+
+
     @Override
     protected void onResume() {
         super.onResume();

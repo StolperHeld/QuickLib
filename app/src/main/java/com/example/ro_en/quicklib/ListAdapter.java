@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
 
 
+import com.example.ro_en.quicklib.model.Lists;
+
 import java.util.List;
 
 import static android.support.v7.widget.RecyclerView.*;

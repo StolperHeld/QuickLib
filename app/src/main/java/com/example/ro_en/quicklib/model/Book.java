@@ -1,4 +1,4 @@
-package com.example.ro_en.quicklib;
+package com.example.ro_en.quicklib.model;
 
 /**
  * Created by RO_EN on 14.03.2018.

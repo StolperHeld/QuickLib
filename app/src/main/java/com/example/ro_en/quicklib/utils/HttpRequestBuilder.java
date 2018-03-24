@@ -1,8 +1,9 @@
-package com.example.ro_en.quicklib;
+package com.example.ro_en.quicklib.utils;
 
 
 import android.os.AsyncTask;
 
+import com.example.ro_en.quicklib.model.Book;
 import com.example.ro_en.quicklib.utils.AsyncResponse;
 import com.example.ro_en.quicklib.utils.JsonToBook;
 import java.io.BufferedReader;

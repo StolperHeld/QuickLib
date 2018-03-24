@@ -1,6 +1,6 @@
 package com.example.ro_en.quicklib.utils;
 
-import com.example.ro_en.quicklib.Book;
+import com.example.ro_en.quicklib.model.Book;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

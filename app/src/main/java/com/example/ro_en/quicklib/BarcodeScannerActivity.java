@@ -3,7 +3,6 @@ package com.example.ro_en.quicklib;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,12 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ro_en.quicklib.barcode.BarcodeCaptureActivity;
+import com.example.ro_en.quicklib.firebase.FirebaseMethods;
+import com.example.ro_en.quicklib.model.Book;
 import com.example.ro_en.quicklib.utils.AsyncResponse;
+import com.example.ro_en.quicklib.utils.HttpRequestBuilder;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
-import com.example.ro_en.quicklib.barcode.BarcodeCaptureActivity;
-
-import org.w3c.dom.Text;
 
 
 public class BarcodeScannerActivity extends NavigationDrawerActivity {

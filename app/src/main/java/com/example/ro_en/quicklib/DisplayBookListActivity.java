@@ -16,6 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ro_en.quicklib.firebase.BookListAdapter;
+import com.example.ro_en.quicklib.model.Book;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,13 +1,14 @@
 package com.example.ro_en.quicklib;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
+
+import com.example.ro_en.quicklib.firebase.FirebaseMethods;
+import com.example.ro_en.quicklib.model.Book;
 
 
 public class AddBookActivity extends NavigationDrawerActivity {
