@@ -4,20 +4,27 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.example.ro_en.quicklib.firebase.BookListAdapter;
+import com.example.ro_en.quicklib.firebase.ShortBookAdapter;
 import com.example.ro_en.quicklib.model.Book;
+import com.example.ro_en.quicklib.model.ShortBook;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,21 +35,35 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
     LinearLayout fabLayout1, fabLayout2;
     View fabBGLayout;
     boolean isFABOpen=false;
-
+    private static final String TAG = "Book-List-Log";
+    private String userId;
+    private Query mQuery;
+    private List<ShortBook> shortBookList;
     private List<Book> bookList = new ArrayList<>();
-    private RecyclerView bookListRecyclerView;
+    private ShortBookAdapter shortBookAdapter;
+    private RecyclerView shortBookRecyclerView;
     private BookListAdapter bookListAdapter;
-    int RecyclerViewItemPosition;
-    View ChildView;
-    TextView listNameFromMain;
+    private TextView listNameFromMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_display_book_list);
+        Intent intent = getIntent();
+        final String listId = intent.getStringExtra("listId");
+        final String listName = intent.getStringExtra("listName");
 
+
+
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //navigation Drawer
         getLayoutInflater().inflate(R.layout.activity_display_book_list, frameLayout);
+        //Book-List
+        shortBookList = new ArrayList<>();
+        shortBookAdapter = new ShortBookAdapter(getApplicationContext(), shortBookList);
+        shortBookRecyclerView = (RecyclerView) findViewById(R.id.display_book_list_recycler_View);
+        shortBookRecyclerView.setHasFixedSize(true);
+        shortBookRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        shortBookRecyclerView.setAdapter(shortBookAdapter);
 
         fabLayout1= (LinearLayout) findViewById(R.id.fabLayout_add_book);
         fabLayout2= (LinearLayout) findViewById(R.id.fabLayout_scan_book);
@@ -50,12 +71,16 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
         fabAddBook = (FloatingActionButton) findViewById(R.id.fab_add_book);
         fabScanBook = (FloatingActionButton) findViewById(R.id.fab_scan_book);
 
+
         final AlphaAnimation alphaAnimation = new AlphaAnimation(1F, 0.5F);
 
         fabAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AddBookActivity.class));
+                Intent i=new Intent(getApplicationContext(), AddBookActivity.class);
+                i.putExtra("listName", listName);
+                i.putExtra("listId", listId);
+                getApplicationContext().startActivity(i);
                 v.startAnimation(alphaAnimation);
             }
         });
@@ -63,7 +88,10 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
         fabScanBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), BarcodeScannerActivity.class));
+                Intent i=new Intent(getApplicationContext(), BarcodeScannerActivity.class);
+                i.putExtra("listName", listName);
+                i.putExtra("listId", listId);
+                getApplicationContext().startActivity(i);
                 v.startAnimation(alphaAnimation);
             }
         });
@@ -87,64 +115,35 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
             }
         });
 
-        bookListRecyclerView = (RecyclerView) findViewById(R.id.display_book_list_recycler_View);
 
-        listNameFromMain = findViewById(R.id.list_name_from_main);
-        listNameFromMain.setText("hier kommt der Intent rein");//TODO: set Extra vom Intent in this TextView
-
-        //Adding items to RecyclerView
-        bookList = new ArrayList<>();
-        bookList.add(new Book("hallo","1234567891",
-                "thomas", "schaffran","12-06-1995",
-                "maulbronn", 155));
-
-        //TODO: hier können Daten in die Liste eingetragen werden :D
-
-        bookListAdapter = new BookListAdapter(bookList);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        bookListRecyclerView.setLayoutManager(mLayoutManager);
-        bookListRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        bookListRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        bookListRecyclerView.setAdapter(bookListAdapter);
-
-        bookListRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-
-            GestureDetector gestureDetector = new GestureDetector(DisplayBookListActivity.this, new GestureDetector.SimpleOnGestureListener() {
-
-                @Override
-                public boolean onSingleTapUp(MotionEvent motionEvent) {
-
-                    return true;
+        userId = user.getUid();
+        FirebaseFirestore mFireStore = FirebaseFirestore.getInstance();
+        mQuery = mFireStore.collection("lists").document(listId).collection("books");
+        mQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.d(TAG, "Error : " + e.getMessage());
+                    return;
                 }
+                for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
+                    if (doc.getType() == DocumentChange.Type.ADDED) {
+                        String listName = doc.getDocument().getString("bookName");
+                        Log.d(TAG, "Name : " + listName);
+                        ShortBook shortBook = doc.getDocument().toObject(ShortBook.class);
+                        shortBookList.add(shortBook);
+                        shortBookAdapter.notifyDataSetChanged();
 
-            });
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView Recyclerview, MotionEvent motionEvent) {
-
-                ChildView = Recyclerview.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
-
-                if(ChildView != null && gestureDetector.onTouchEvent(motionEvent)) {
-
-                    RecyclerViewItemPosition = Recyclerview.getChildAdapterPosition(ChildView);
-
-                    //TODO:hier kann eine Intent erzeugt werden, der mit dem Namen des Buchs auf die AnzeigeActivity verweißt
-
-                    Toast.makeText(DisplayBookListActivity.this, bookList.get(RecyclerViewItemPosition).toString(), Toast.LENGTH_LONG).show();
+                    }
                 }
-
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView Recyclerview, MotionEvent motionEvent) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
             }
         });
+        listNameFromMain = findViewById(R.id.list_name);
+        listNameFromMain.setText(listName);
+
+
+
+
     }
 
     private void showFABMenu(){
@@ -188,6 +187,10 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
 
             }
         });
+    }
+
+    public void addBookFirebase(){
+
     }
 
     @Override

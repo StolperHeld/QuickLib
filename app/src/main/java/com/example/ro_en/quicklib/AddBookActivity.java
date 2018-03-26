@@ -1,10 +1,12 @@
 package com.example.ro_en.quicklib;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ro_en.quicklib.firebase.FirebaseMethods;
@@ -28,8 +30,24 @@ public class AddBookActivity extends NavigationDrawerActivity {
         final EditText addBookPublisherDate = (EditText) findViewById(R.id.addBookPublisherDate);
         final EditText addBookPublisherPlace = (EditText) findViewById(R.id.addBookPublisherPlace);
         final EditText addBookPages = (EditText) findViewById(R.id.addBookPages);
-        RatingBar addBookRating = (RatingBar) findViewById(R.id.addBookratingBar);
+        final TextView addBookListName = (TextView) findViewById(R.id.addBookListName);
+
+
         Button addBookButton = (Button) findViewById(R.id.addBookButton);
+
+        Bundle extras = getIntent().getExtras();
+        final String listId;
+        final String listName;
+        if (extras == null){
+           listId = null;
+        } else {
+            listId = extras.getString("listId");
+            listName = extras.getString("listName");
+            addBookListName.setText(listName);
+            addBookListName.setVisibility(View.VISIBLE);
+        }
+        System.out.println("Intent-Add-Book: " + listId);
+
 
         addBookButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,12 +59,16 @@ public class AddBookActivity extends NavigationDrawerActivity {
                 String bookPublisher = addBookPublisher.getText().toString();
                 String bookPublisherDate = addBookPublisherDate.getText().toString();
                 String bookPublisherPlace = addBookPublisherPlace.getText().toString();
-                int bookPages = Integer.parseInt(addBookPages.getText().toString());
+                String bookPagesString = addBookPages.getText().toString();
+                int bookPages = 0;
+                if (!bookPagesString.equals("")) {
+                    bookPages = Integer.parseInt(addBookPages.getText().toString());
+                }
 
                 IsbnValidation validation = new IsbnValidation();
                 if(validation.validateIsbn(bookIsbn)){
                     Book book = new Book(bookTitle, bookIsbn, bookAuthor, bookPublisher, bookPublisherDate, bookPublisherPlace, bookPages);
-                    FirebaseMethods.createBook(book);
+                    FirebaseMethods.createBook(book,listId);
                 }else {
                     Toast.makeText(AddBookActivity.this, "entered ISBN is no ISBN", Toast.LENGTH_LONG).show();
                 }

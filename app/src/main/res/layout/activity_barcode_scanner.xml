@@ -102,12 +102,20 @@
             android:text="@string/add_book_pages"
             android:textSize="22sp" />
 
+        <TextView
+            android:id="@+id/result_List"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:freezesText="true"
+            android:gravity="center_horizontal|center_vertical"
+            android:visibility="invisible"
+            android:textSize="22sp" />
+
         <Button
             android:id="@+id/addBookButton"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="addBookFirebase"
             android:text="@string/add_book_button" />
 
     </LinearLayout>

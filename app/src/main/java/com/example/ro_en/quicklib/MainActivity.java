@@ -117,8 +117,6 @@ public class MainActivity extends NavigationDrawerActivity{
             FirebaseFirestore mFireStore = FirebaseFirestore.getInstance();
             mQuery = mFireStore.collection("lists").whereEqualTo("uid", userId);
 
-            //mQuery = mFireStore.collection("lists");
-
             mQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {

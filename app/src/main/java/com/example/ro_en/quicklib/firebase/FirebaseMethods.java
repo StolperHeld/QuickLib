@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.List;
 
+import com.example.ro_en.quicklib.model.ShortBook;
 import com.example.ro_en.quicklib.model.User;
 import com.example.ro_en.quicklib.model.Book;
 import com.example.ro_en.quicklib.model.Lists;
@@ -104,15 +105,36 @@ public class FirebaseMethods {
 
     }
 
-    public static void createBook(Book book) {
+    public static void createBook(Book book, final String listId) {
+        final Book newBook = book;
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference listRef = db.collection("books");
+        final CollectionReference listRef = db.collection("books");
+        listRef.add(book)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot successfully written! With ID: " + documentReference.getId());
+                        addBookToList(documentReference.getId(), listId, newBook);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
+    public static void addBookToList(String bookId, String listId, Book book) {
+        ShortBook shortBook = new ShortBook(book.getBookTitle(), bookId);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final CollectionReference listRef = db.collection("lists").document(listId).collection("books");
         listRef.document()
-                .set(book)
+                .set(shortBook)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                        Log.d(TAG, "DocumentSnapshot successfully written! With ID: " + listRef.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

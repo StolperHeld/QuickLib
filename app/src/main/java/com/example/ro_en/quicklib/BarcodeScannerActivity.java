@@ -31,15 +31,15 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
     private TextView mBookPublishDate;
     private TextView mBookPages;
     private TextView mResultTextView;
+    private TextView mListName;
     private Button addBook;
     private Book backgroundBook;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_barcode_scanner);
-
         //Navgation Drawer
         getLayoutInflater().inflate(R.layout.activity_barcode_scanner, frameLayout);
 
@@ -52,8 +52,20 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
         mBookPages = findViewById(R.id.result_BookPages);
         mResultTextView = findViewById(R.id.result_textview);
         addBook = findViewById(R.id.addBookButton);
-
         addBook.setEnabled(false);
+        mListName = findViewById(R.id.result_List);
+
+        Bundle extras = getIntent().getExtras();
+        final String listId;
+        final String listName;
+        if (extras == null){
+            listId = null;
+        } else {
+            listId = extras.getString("listId");
+            listName = extras.getString("listName");
+            mListName.setText(listName);
+            mListName.setVisibility(View.VISIBLE);
+        }
 
         Button scanBarcodeButton = findViewById(R.id.scan_barcode_button);
         scanBarcodeButton.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +73,12 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
                 startActivityForResult(intent, BARCODE_READER_REQUEST_CODE);
+            }
+        });
+        addBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMethods.createBook(backgroundBook,listId);
             }
         });
     }
@@ -105,9 +123,6 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
         } else super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void addBookFirebase(View v) {
-        FirebaseMethods.createBook(backgroundBook);
-    }
 
     //TODO: wenn die endgültige Reihenfolge der Items feststeht dies nochmal verbessern
     @Override

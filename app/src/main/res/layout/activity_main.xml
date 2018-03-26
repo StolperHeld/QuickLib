@@ -5,15 +5,13 @@
     android:id="@+id/mainCoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:layout_marginTop="@dimen/toolbar_size"
     tools:context="com.example.ro_en.quicklib.MainActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mainRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/toolbar_size"
-        android:background="@android:color/white"
         android:scrollbars="vertical" />
 
     <android.support.design.widget.FloatingActionButton
