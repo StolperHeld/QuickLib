@@ -3,7 +3,6 @@ package com.example.ro_en.quicklib;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
@@ -65,7 +64,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 } else if (id == R.id.nav_bookshelf) {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 } else if (id == R.id.nav_manage) {
-                    startActivity(new Intent(getApplicationContext(), SearchIsbn.class));
+                    startActivity(new Intent(getApplicationContext(), SearchIsbnActivity.class));
                 } else if (id == R.id.nav_sign_out) {
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     auth.signOut();

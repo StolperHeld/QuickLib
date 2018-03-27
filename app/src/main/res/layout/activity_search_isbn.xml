@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ro_en.quicklib.SearchIsbn">
+    tools:context="com.example.ro_en.quicklib.SearchIsbnActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/result_textview"
+            android:id="@+id/search_isbn_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:freezesText="true"
@@ -23,7 +23,7 @@
             android:textSize="22sp" />
 
         <Button
-            android:id="@+id/scan_barcode_button"
+            android:id="@+id/search_isbn_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/secondaryColor"
@@ -40,7 +40,7 @@
             android:textSize="22dp" />
 
         <TextView
-            android:id="@+id/result_BookTitle"
+            android:id="@+id/isbnsearch_result_BookTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:freezesText="true"
@@ -49,7 +49,7 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/result_Isbn"
+            android:id="@+id/isbnsearch_result_Isbn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:freezesText="true"
@@ -58,7 +58,7 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/result_BookAuthor"
+            android:id="@+id/isbnsearch_result_BookAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:freezesText="true"
@@ -67,7 +67,7 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/result_BookPublisher"
+            android:id="@+id/isbnsearch_result_BookPublisher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:freezesText="true"
@@ -76,7 +76,7 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/result_BookPublisherPlace"
+            android:id="@+id/isbnsearch_result_BookPublisherPlace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:freezesText="true"
@@ -85,7 +85,7 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/result_BookPublisherDate"
+            android:id="@+id/isbnsearch_result_BookPublisherDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:freezesText="true"
@@ -94,7 +94,7 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/result_BookPages"
+            android:id="@+id/isbnsearch_result_BookPages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:freezesText="true"
@@ -103,7 +103,7 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/result_List"
+            android:id="@+id/isbnsearch_result_List"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:freezesText="true"
@@ -111,7 +111,7 @@
             android:gravity="center_horizontal|center_vertical"/>
 
         <Button
-            android:id="@+id/addBookButton"
+            android:id="@+id/isbnsearch_addBookButton"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

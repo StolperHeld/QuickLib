@@ -13,19 +13,21 @@ public class Book {
     private String bookPublisher;
     private String bookPublisherDate;
     private String bookPublisherPlace;
+    private String bookImageUrl;
     private int bookPages;
 
     public Book() {}
 
     public Book(String bookTitle, String bookIsbn, String bookAuthor,
                 String bookPublisher, String bookPublisherDate,
-                String bookPublisherPlace, int bookPages){
+                String bookPublisherPlace, String bookImageUrl, int bookPages){
         this.bookTitle = bookTitle;
         this.bookIsbn = bookIsbn;
         this.bookAuthor = bookAuthor;
         this.bookPublisher = bookPublisher;
         this.bookPublisherDate = bookPublisherDate;
         this.bookPublisherPlace = bookPublisherPlace;
+        this.bookImageUrl = bookImageUrl;
         this.bookPages = bookPages;
     }
 
@@ -85,5 +87,13 @@ public class Book {
 
     public void setBookPages(int bookPages) {
         this.bookPages = bookPages;
+    }
+
+    public String getBookImageUrl() {
+        return bookImageUrl;
+    }
+
+    public void setBookImageUrl(String bookImageUrl) {
+        this.bookImageUrl = bookImageUrl;
     }
 }

@@ -29,9 +29,10 @@ public class JsonToBook {
         String bookPublisher = bookJson.getJSONArray("publishers").getJSONObject(0).getString("name");
         String bookPublisherDate = bookJson.getString("publish_date");
         String bookPublisherPlace = bookJson.getJSONArray("publish_places").getJSONObject(0).getString("name");
+        String bookImageUrl = bookJson.getJSONObject("cover").getString("medium");
         int bookPages = bookJson.getInt("number_of_pages");
 
-        Book book = new Book(bookTitle, bookIsbn13, bookAuthor, bookPublisher, bookPublisherDate, bookPublisherPlace, bookPages);
+        Book book = new Book(bookTitle, bookIsbn13, bookAuthor, bookPublisher, bookPublisherDate, bookPublisherPlace, bookImageUrl, bookPages);
 
         return book;
     }
