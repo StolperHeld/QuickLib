@@ -37,28 +37,28 @@ public class JsonToBook {
             JSONObject bookIdentifiers = bookJson.getJSONObject("identifiers");
             JSONArray bookIsbn10 = bookIdentifiers.getJSONArray("isbn_10");
             String bookIsbn10String = bookIsbn10.get(0).toString();
-            String bookIsbn13 = Isbn10to13Converter.ISBN10toISBN13(bookIsbn10String);
+            bookIsbn13 = Isbn10to13Converter.ISBN10toISBN13(bookIsbn10String);
         }
         if (bookJson.has("authors")) {
-            String bookAuthor = bookJson.getJSONArray("authors").getJSONObject(0).getString("name");
+            bookAuthor = bookJson.getJSONArray("authors").getJSONObject(0).getString("name");
         }
         if (bookJson.has("publishers")) {
-            String bookPublisher = bookJson.getJSONArray("publishers").getJSONObject(0).getString("name");
+            bookPublisher = bookJson.getJSONArray("publishers").getJSONObject(0).getString("name");
 
         }
         if (bookJson.has("publish_date")) {
-            String bookPublisherDate = bookJson.getString("publish_date");
+            bookPublisherDate = bookJson.getString("publish_date");
         }
         if (bookJson.has("publish_places")) {
-            String bookPublisherPlace = bookJson.getJSONArray("publish_places").getJSONObject(0).getString("name");
+            bookPublisherPlace = bookJson.getJSONArray("publish_places").getJSONObject(0).getString("name");
 
         }
-        if (bookJson.has("publish_places")) {
-            String bookImageUrl = bookJson.getJSONObject("cover").getString("medium");
+        if (bookJson.has("cover")) {
+            bookImageUrl = bookJson.getJSONObject("cover").getString("medium");
 
         }
         if (bookJson.has("number_of_pages")) {
-            int bookPages = bookJson.getInt("number_of_pages");
+            bookPages = bookJson.getInt("number_of_pages");
 
         }
 
