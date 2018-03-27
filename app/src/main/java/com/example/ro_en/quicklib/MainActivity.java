@@ -150,8 +150,6 @@ public class MainActivity extends NavigationDrawerActivity{
 
 
     //TODO: wenn die endgültige Reihenfolge der Items feststeht dies nochmal verbessern
-
-
     @Override
     protected void onResume() {
         super.onResume();

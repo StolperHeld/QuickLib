@@ -62,6 +62,7 @@
     <string name="close_fab_menu">close menu</string>
     <string name="fab_add_book">add book</string>
     <string name="fab_scan_book">scan book-barcode</string>
+    <string name="fab_search_isbn">search with ISBN</string>
 
     <!-- Recycler View -->
     <string name="message_no_results">Oops, couldn\'t find any results\nthat matched your filter</string>
@@ -73,7 +74,7 @@
     <string name="publisher_text">Publisher:</string>
     <string name="publisher_date_text">Date of Publication:</string>
     <string name="publisher_place_text">Place of Publication:</string>
-    <string name="page_text">Pages:</string>
+    <string name="page_text">\u2116 of Pages:</string>
     <string name="search_isbn_button">Search ISBN</string>
     <string name="search_isbn">Search ISBN</string>
 </resources>

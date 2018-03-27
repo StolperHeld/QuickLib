@@ -67,9 +67,6 @@ public class DisplayBookActivity extends NavigationDrawerActivity {
                         displayBookPages.setText(book.getBookPages() + "");
                         new LoadImage(book.getBookImageUrl(),displayBookImage).execute();
 
-                        //https://android--code.blogspot.de/2015/08/android-imageview-set-image-from-url.html
-                        //TODO: ImageView mit URL befüllen
-
                     } else {
                         Log.d(TAG, "No such document");
                     }

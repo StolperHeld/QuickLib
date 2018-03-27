@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ro_en.quicklib.firebase.FirebaseMethods;
 import com.example.ro_en.quicklib.model.Book;
 import com.example.ro_en.quicklib.utils.AsyncResponse;
 import com.example.ro_en.quicklib.utils.HttpRequestBuilder;
@@ -14,7 +15,7 @@ import com.example.ro_en.quicklib.utils.HttpRequestBuilder;
 public class SearchIsbnActivity extends NavigationDrawerActivity {
 
     public EditText mIsbnSearch;
-    public TextView mBookTitle, mBookAuthor, mBookIsbn, mBookPublisher, mBookPublishPlace, mBookPublishDate, mBookPages;
+    public TextView mBookTitle, mBookAuthor, mBookIsbn, mBookPublisher, mBookPublishPlace, mBookPublishDate, mBookPages, mListName;
     public Book backgroundBook;
     public Button addBook, searchIsbn;
 
@@ -32,9 +33,22 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
         mBookPublishDate = findViewById(R.id.isbnsearch_result_BookPublisherDate);
         mIsbnSearch = findViewById(R.id.search_isbn_field);
         mBookPages = findViewById(R.id.isbnsearch_result_BookPages);
+        mListName = findViewById(R.id.isbnsearch_result_List);
         searchIsbn = findViewById(R.id.search_isbn_button);
         addBook = findViewById(R.id.isbnsearch_addBookButton);
         addBook.setEnabled(false);
+
+        Bundle extras = getIntent().getExtras();
+        final String listId;
+        final String listName;
+        if (extras == null){
+            listId = null;
+        } else {
+            listId = extras.getString("listId");
+            listName = extras.getString("listName");
+            mListName.setText(listName);
+            mListName.setVisibility(View.VISIBLE);
+        }
 
         searchIsbn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +81,18 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
                 }
             }
         });
+        //TODO: hier mal Robert fragen ob das so rein soll (ist von BarcodeScannerActivity z.78-83)
+        addBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMethods.createBook(backgroundBook,listId);
+            }
+        });
+    }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navigationView.getMenu().getItem(4).setChecked(true);
     }
 }

@@ -63,9 +63,11 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                     startActivity(new Intent(getApplicationContext(), ProfileSettingsActivity.class));
                 } else if (id == R.id.nav_bookshelf) {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                } else if (id == R.id.nav_manage) {
+                } else if (id == R.id.nav_search_isbn) {
                     startActivity(new Intent(getApplicationContext(), SearchIsbnActivity.class));
-                } else if (id == R.id.nav_sign_out) {
+                } else if (id == R.id.nav_manage) {
+                startActivity(new Intent(getApplicationContext(), SearchIsbnActivity.class));
+                }else if (id == R.id.nav_sign_out) {
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     auth.signOut();
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));

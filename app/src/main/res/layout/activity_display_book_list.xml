@@ -39,6 +39,34 @@
         android:visibility="gone" />
 
     <LinearLayout
+        android:id="@+id/fabLayout_search_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="@dimen/standard_25"
+        android:layout_marginRight="@dimen/standard_25"
+        android:clipToPadding="false"
+        android:gravity="center_vertical"
+        android:padding="@dimen/standard_12"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fab_menu_text_background"
+            android:text="@string/fab_search_isbn" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_search_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:tint="@android:color/white"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_search_24dp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/fabLayout_add_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

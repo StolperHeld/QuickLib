@@ -32,8 +32,8 @@ import java.util.List;
 
 public class DisplayBookListActivity extends NavigationDrawerActivity {
 
-    FloatingActionButton fabMenuButton, fabAddBook, fabScanBook;
-    LinearLayout fabLayout1, fabLayout2;
+    FloatingActionButton fabMenuButton, fabAddBook, fabScanBook, fabSearchIsbn;
+    LinearLayout fabLayout1, fabLayout2, fabLayout3;
     View fabBGLayout;
     boolean isFABOpen=false;
     private static final String TAG = "Book-List-Log";
@@ -74,9 +74,11 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
 
         fabLayout1= (LinearLayout) findViewById(R.id.fabLayout_add_book);
         fabLayout2= (LinearLayout) findViewById(R.id.fabLayout_scan_book);
+        fabLayout3 = (LinearLayout) findViewById(R.id.fabLayout_search_book);
         fabMenuButton = (FloatingActionButton) findViewById(R.id.fab_menu);
         fabAddBook = (FloatingActionButton) findViewById(R.id.fab_add_book);
         fabScanBook = (FloatingActionButton) findViewById(R.id.fab_scan_book);
+        fabSearchIsbn = (FloatingActionButton) findViewById(R.id.fab_search_book);
 
 
         final AlphaAnimation alphaAnimation = new AlphaAnimation(1F, 0.5F);
@@ -85,6 +87,17 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(DisplayBookListActivity.this, AddBookActivity.class);
+                i.putExtra("listName", listName);
+                i.putExtra("listId", listId);
+                DisplayBookListActivity.this.startActivity(i);
+                v.startAnimation(alphaAnimation);
+            }
+        });
+
+        fabSearchIsbn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(DisplayBookListActivity.this, SearchIsbnActivity.class);
                 i.putExtra("listName", listName);
                 i.putExtra("listId", listId);
                 DisplayBookListActivity.this.startActivity(i);
@@ -157,11 +170,14 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
         isFABOpen=true;
         fabLayout1.setVisibility(View.VISIBLE);
         fabLayout2.setVisibility(View.VISIBLE);
+        fabLayout3.setVisibility(View.VISIBLE);
         fabBGLayout.setVisibility(View.VISIBLE);
 
         fabMenuButton.animate().rotationBy(135);
         fabLayout1.animate().translationY(-getResources().getDimension(R.dimen.standard_55));
         fabLayout2.animate().translationY(-getResources().getDimension(R.dimen.standard_100));
+        fabLayout3.animate().translationY(-getResources().getDimension(R.dimen.standard_145));
+
     }
 
     private void closeFABMenu(){
@@ -169,7 +185,8 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
         fabBGLayout.setVisibility(View.GONE);
         fabMenuButton.animate().rotationBy(-135);
         fabLayout1.animate().translationY(0);
-        fabLayout2.animate().translationY(0).setListener(new Animator.AnimatorListener() {
+        fabLayout2.animate().translationY(0);
+        fabLayout3.animate().translationY(0).setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
 
@@ -180,6 +197,7 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
                 if(!isFABOpen){
                     fabLayout1.setVisibility(View.GONE);
                     fabLayout2.setVisibility(View.GONE);
+                    fabLayout3.setVisibility(View.GONE);
                 }
 
             }

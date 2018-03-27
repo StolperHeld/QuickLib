@@ -6,7 +6,6 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="horizontal">
-<!--TODO: muss noch überarbeitet werden, da es sich sonst vll überlappt-->
 
     <TextView
         android:layout_width="wrap_content"

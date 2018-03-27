@@ -72,7 +72,6 @@ public class AddBookActivity extends NavigationDrawerActivity {
                 }else {
                     Toast.makeText(AddBookActivity.this, "entered ISBN is no ISBN", Toast.LENGTH_LONG).show();
                 }
-                //TODO: Hier sollte man nochmal schauen ... Die Activity wird gewechselt wenn man nicht alle EditTexte ausfüllt (obwohl es keinen Intent gibt)
                 // TODO: Rating
             }
         });
