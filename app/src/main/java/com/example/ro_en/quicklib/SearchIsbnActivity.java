@@ -28,6 +28,7 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
         mBookAuthor = findViewById(R.id.isbnsearch_result_BookAuthor);
         mBookIsbn = findViewById(R.id.isbnsearch_result_Isbn);
         mBookPublisher = findViewById(R.id.isbnsearch_result_BookPublisher);
+        mBookPublishPlace = findViewById(R.id.isbnsearch_result_BookPublisherPlace);
         mBookPublishDate = findViewById(R.id.isbnsearch_result_BookPublisherDate);
         mIsbnSearch = findViewById(R.id.search_isbn_field);
         mBookPages = findViewById(R.id.isbnsearch_result_BookPages);

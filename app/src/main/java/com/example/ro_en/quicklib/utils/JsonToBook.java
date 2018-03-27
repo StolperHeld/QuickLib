@@ -44,7 +44,6 @@ public class JsonToBook {
         }
         if (bookJson.has("publishers")) {
             bookPublisher = bookJson.getJSONArray("publishers").getJSONObject(0).getString("name");
-
         }
         if (bookJson.has("publish_date")) {
             bookPublisherDate = bookJson.getString("publish_date");
@@ -61,7 +60,6 @@ public class JsonToBook {
             bookPages = bookJson.getInt("number_of_pages");
 
         }
-
         Book book = new Book(bookTitle, bookIsbn13, bookAuthor, bookPublisher, bookPublisherDate, bookPublisherPlace, bookImageUrl, bookPages);
 
         return book;
