@@ -32,6 +32,7 @@ public class FirebaseMethods {
     private static FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private static String userId = user.getUid().toString();
 
+
     //get current user
     private static FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static DocumentReference userRef = db.collection("user").document(userId);
@@ -144,4 +145,5 @@ public class FirebaseMethods {
                     }
                 });
     }
+
 }

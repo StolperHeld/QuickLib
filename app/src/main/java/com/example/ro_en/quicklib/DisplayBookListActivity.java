@@ -84,7 +84,7 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
         fabAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getApplicationContext(), AddBookActivity.class);
+                Intent i=new Intent(DisplayBookListActivity.this, AddBookActivity.class);
                 i.putExtra("listName", listName);
                 i.putExtra("listId", listId);
                 getApplicationContext().startActivity(i);
@@ -95,7 +95,7 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
         fabScanBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getApplicationContext(), BarcodeScannerActivity.class);
+                Intent i=new Intent(DisplayBookListActivity.this, BarcodeScannerActivity.class);
                 i.putExtra("listName", listName);
                 i.putExtra("listId", listId);
                 getApplicationContext().startActivity(i);
