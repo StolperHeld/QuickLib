@@ -15,10 +15,22 @@
 
         <TextView
             android:id="@+id/diplayBookTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="none"
-            android:hint="@string/add_book_title" />
+            android:hint="@string/add_book_title"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/secondaryColor"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/displayBookImage"
+            android:layout_gravity="right"
+            />
 
         <TextView
             android:id="@+id/displayBookIsbn"
@@ -26,7 +38,8 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             android:ems="10"
-            android:hint="@string/add_book_isbn" />
+            android:hint="@string/add_book_isbn"
+            />
 
         <TextView
             android:id="@+id/diplayBookAuthor"
