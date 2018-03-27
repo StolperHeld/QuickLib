@@ -32,6 +32,8 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
         mIsbnSearch = findViewById(R.id.search_isbn_field);
         mBookPages = findViewById(R.id.isbnsearch_result_BookPages);
         searchIsbn = findViewById(R.id.search_isbn_button);
+        addBook = findViewById(R.id.isbnsearch_addBookButton);
+        addBook.setEnabled(false);
 
         searchIsbn.setOnClickListener(new View.OnClickListener() {
             @Override

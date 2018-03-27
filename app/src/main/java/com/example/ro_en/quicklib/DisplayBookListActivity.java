@@ -87,7 +87,7 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
                 Intent i=new Intent(DisplayBookListActivity.this, AddBookActivity.class);
                 i.putExtra("listName", listName);
                 i.putExtra("listId", listId);
-                getApplicationContext().startActivity(i);
+                DisplayBookListActivity.this.startActivity(i);
                 v.startAnimation(alphaAnimation);
             }
         });
@@ -98,7 +98,7 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
                 Intent i=new Intent(DisplayBookListActivity.this, BarcodeScannerActivity.class);
                 i.putExtra("listName", listName);
                 i.putExtra("listId", listId);
-                getApplicationContext().startActivity(i);
+                DisplayBookListActivity.this.startActivity(i);
                 v.startAnimation(alphaAnimation);
             }
         });

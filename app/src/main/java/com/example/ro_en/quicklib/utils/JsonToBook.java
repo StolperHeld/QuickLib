@@ -13,24 +13,54 @@ import java.util.Iterator;
 
 public class JsonToBook {
 
-    public static Book jsontoBook (String jsonString) throws Exception {
+
+    public static String bookTitle = "";
+    public static String bookIsbn13 = "";
+    public static String bookAuthor = "";
+    public static String bookPublisher = "";
+    public static String bookPublisherDate = "";
+    public static String bookPublisherPlace = "";
+    public static String bookImageUrl = "";
+    public static int bookPages = 0;
+
+    public static Book jsontoBook(String jsonString) throws Exception {
         JSONObject jsonObject = new JSONObject(jsonString);
         Iterator<String> keys = jsonObject.keys();
         // get some_name_i_wont_know in str_Name
         String isbn_Name = keys.next();
         // get the value i care about
         JSONObject bookJson = jsonObject.getJSONObject(isbn_Name);
-        String bookTitle = bookJson.getString("title");
-        JSONObject bookIdentifiers = bookJson.getJSONObject("identifiers");
-        JSONArray bookIsbn10 = bookIdentifiers.getJSONArray("isbn_10");
-        String bookIsbn10String = bookIsbn10.get(0).toString();
-        String bookIsbn13 = Isbn10to13Converter.ISBN10toISBN13(bookIsbn10String);
-        String bookAuthor = bookJson.getJSONArray("authors").getJSONObject(0).getString("name");
-        String bookPublisher = bookJson.getJSONArray("publishers").getJSONObject(0).getString("name");
-        String bookPublisherDate = bookJson.getString("publish_date");
-        String bookPublisherPlace = bookJson.getJSONArray("publish_places").getJSONObject(0).getString("name");
-        String bookImageUrl = bookJson.getJSONObject("cover").getString("medium");
-        int bookPages = bookJson.getInt("number_of_pages");
+        if (bookJson.has("title")) {
+            bookTitle = bookJson.getString("title");
+        }
+        if (bookJson.has("identifiers")) {
+            JSONObject bookIdentifiers = bookJson.getJSONObject("identifiers");
+            JSONArray bookIsbn10 = bookIdentifiers.getJSONArray("isbn_10");
+            String bookIsbn10String = bookIsbn10.get(0).toString();
+            String bookIsbn13 = Isbn10to13Converter.ISBN10toISBN13(bookIsbn10String);
+        }
+        if (bookJson.has("authors")) {
+            String bookAuthor = bookJson.getJSONArray("authors").getJSONObject(0).getString("name");
+        }
+        if (bookJson.has("publishers")) {
+            String bookPublisher = bookJson.getJSONArray("publishers").getJSONObject(0).getString("name");
+
+        }
+        if (bookJson.has("publish_date")) {
+            String bookPublisherDate = bookJson.getString("publish_date");
+        }
+        if (bookJson.has("publish_places")) {
+            String bookPublisherPlace = bookJson.getJSONArray("publish_places").getJSONObject(0).getString("name");
+
+        }
+        if (bookJson.has("publish_places")) {
+            String bookImageUrl = bookJson.getJSONObject("cover").getString("medium");
+
+        }
+        if (bookJson.has("number_of_pages")) {
+            int bookPages = bookJson.getInt("number_of_pages");
+
+        }
 
         Book book = new Book(bookTitle, bookIsbn13, bookAuthor, bookPublisher, bookPublisherDate, bookPublisherPlace, bookImageUrl, bookPages);
 
