@@ -31,6 +31,18 @@ public class Book {
         this.bookPages = bookPages;
     }
 
+    public Book(String bookTitle, String bookIsbn, String bookAuthor,
+                String bookPublisher, String bookPublisherDate,
+                String bookPublisherPlace,  int bookPages){
+        this.bookTitle = bookTitle;
+        this.bookIsbn = bookIsbn;
+        this.bookAuthor = bookAuthor;
+        this.bookPublisher = bookPublisher;
+        this.bookPublisherDate = bookPublisherDate;
+        this.bookPublisherPlace = bookPublisherPlace;
+        this.bookPages = bookPages;
+    }
+
 
 
     public String getBookTitle() {
