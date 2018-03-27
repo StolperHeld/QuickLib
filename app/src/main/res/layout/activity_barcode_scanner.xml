@@ -35,9 +35,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:gravity="center_horizontal|center_vertical"
-            android:textSize="22dp"
-            android:text="@string/results"/>
+            android:text="@string/results"
+            android:textSize="22dp" />
 
         <TextView
             android:id="@+id/result_BookTitle"
@@ -107,8 +108,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:freezesText="true"
+            android:textColor="@color/primaryColor"
             android:gravity="center_horizontal|center_vertical"
-            android:visibility="invisible"
             android:textSize="22sp" />
 
         <Button

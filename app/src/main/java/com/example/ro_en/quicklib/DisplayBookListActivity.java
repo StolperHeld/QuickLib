@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -64,6 +65,12 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
         shortBookRecyclerView.setHasFixedSize(true);
         shortBookRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         shortBookRecyclerView.setAdapter(shortBookAdapter);
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(
+                shortBookRecyclerView.getContext(),
+                DividerItemDecoration.VERTICAL
+        );
+        shortBookRecyclerView.addItemDecoration(mDividerItemDecoration);
+
 
         fabLayout1= (LinearLayout) findViewById(R.id.fabLayout_add_book);
         fabLayout2= (LinearLayout) findViewById(R.id.fabLayout_scan_book);
