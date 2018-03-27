@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.ro_en.quicklib.firebase.FirebaseMethods;
 import com.example.ro_en.quicklib.model.Book;
+import com.example.ro_en.quicklib.utils.LoadImage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -64,7 +65,7 @@ public class DisplayBookActivity extends NavigationDrawerActivity {
                         displayBookPublisherPlace.setText(book.getBookPublisherPlace());
                         displayBookPublisherDate.setText(book.getBookPublisherDate());
                         displayBookPages.setText(book.getBookPages() + "");
-                        loadImageFromURL(book.getBookImageUrl(),displayBookImage);
+                        new LoadImage(book.getBookImageUrl(),displayBookImage);
 
                         //https://android--code.blogspot.de/2015/08/android-imageview-set-image-from-url.html
                         //TODO: ImageView mit URL befüllen
@@ -77,36 +78,5 @@ public class DisplayBookActivity extends NavigationDrawerActivity {
                 }
             }
         });
-
-
-
-
-
-
-
-
-    }
-    public boolean loadImageFromURL(String fileUrl,
-                                    ImageView iv){
-        try {
-
-            URL myFileUrl = new URL (fileUrl);
-            HttpURLConnection conn =
-                    (HttpURLConnection) myFileUrl.openConnection();
-            conn.setDoInput(true);
-            conn.connect();
-
-            InputStream is = conn.getInputStream();
-            iv.setImageBitmap(BitmapFactory.decodeStream(is));
-
-            return true;
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
     }
 }
