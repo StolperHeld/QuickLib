@@ -74,4 +74,6 @@
     <string name="publisher_date_text"><u>publishdate:</u></string>
     <string name="publisher_place_text"><u>publishplace:</u></string>
     <string name="page_text"><u>pages:</u></string>
+    <string name="search_isbn_button">Search ISBN</string>
+    <string name="search_isbn">Search ISBN</string>
 </resources>
