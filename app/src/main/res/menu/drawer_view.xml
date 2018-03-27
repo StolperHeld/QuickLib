@@ -20,7 +20,7 @@
             android:title="Your Lists" />
         <item
             android:id="@+id/nav_manage"
-            android:title="tools" />
+            android:title="Search ISBN" />
         <item
             android:id="@+id/nav_manage2"
             android:title="tools" />
