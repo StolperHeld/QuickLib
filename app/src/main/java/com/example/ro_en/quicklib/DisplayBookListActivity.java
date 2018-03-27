@@ -60,7 +60,7 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
         getLayoutInflater().inflate(R.layout.activity_display_book_list, frameLayout);
         //Book-List
         shortBookList = new ArrayList<>();
-        shortBookAdapter = new ShortBookAdapter(getApplicationContext(), shortBookList);
+        shortBookAdapter = new ShortBookAdapter(DisplayBookListActivity.this, shortBookList);
         shortBookRecyclerView = (RecyclerView) findViewById(R.id.display_book_list_recycler_View);
         shortBookRecyclerView.setHasFixedSize(true);
         shortBookRecyclerView.setLayoutManager(new LinearLayoutManager(this));

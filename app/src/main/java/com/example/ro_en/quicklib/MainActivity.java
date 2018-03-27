@@ -1,5 +1,6 @@
 package com.example.ro_en.quicklib;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,7 +56,7 @@ public class MainActivity extends NavigationDrawerActivity{
         getLayoutInflater().inflate(R.layout.activity_main, frameLayout);
 
         listsList = new ArrayList<>();
-        listsListAdapter = new ListListAdapter(getApplicationContext(), listsList);
+        listsListAdapter = new ListListAdapter(MainActivity.this, listsList);
         recyclerView = (RecyclerView) findViewById(R.id.mainRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
