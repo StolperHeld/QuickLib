@@ -67,13 +67,13 @@
     <string name="message_no_results">Oops, couldn\'t find any results\nthat matched your filter</string>
     <!-- TODO: muss noch geändert werden -->
 
-    <string name="title_text"><u>title:</u></string>
-    <string name="isbn_text"><u>isbn:</u></string>
-    <string name="author_text"><u>author:</u></string>
-    <string name="publisher_text"><u>publisher:</u></string>
-    <string name="publisher_date_text"><u>publishdate:</u></string>
-    <string name="publisher_place_text"><u>publishplace:</u></string>
-    <string name="page_text"><u>pages:</u></string>
+    <string name="title_text">Title:</string>
+    <string name="isbn_text">ISBN:</string>
+    <string name="author_text">Author:</string>
+    <string name="publisher_text">Publisher:</string>
+    <string name="publisher_date_text">Date of Publication:</string>
+    <string name="publisher_place_text">Place of Publication:</string>
+    <string name="page_text">Pages:</string>
     <string name="search_isbn_button">Search ISBN</string>
     <string name="search_isbn">Search ISBN</string>
 </resources>
