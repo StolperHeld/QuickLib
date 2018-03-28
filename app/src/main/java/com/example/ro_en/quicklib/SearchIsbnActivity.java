@@ -91,6 +91,7 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
                 Intent i=new Intent(SearchIsbnActivity.this, DisplayBookListActivity.class);
                 i.putExtra("listName", listName);
                 i.putExtra("listId", listId);
+                startActivity(i);
             }
         });
     }

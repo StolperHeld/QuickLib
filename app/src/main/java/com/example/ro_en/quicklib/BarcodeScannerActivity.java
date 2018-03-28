@@ -60,6 +60,7 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
         final String listName;
         if (extras == null){
             listId = null;
+            listName = "";
         } else {
             listId = extras.getString("listId");
             listName = extras.getString("listName");
@@ -80,8 +81,10 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
             public void onClick(View v) {
                 FirebaseMethods.createBook(backgroundBook,listId);
 
-                Intent intentForBackward = new Intent(BarcodeScannerActivity.this, DisplayBookListActivity.class);
-                startActivity(intentForBackward);
+                Intent i=new Intent(BarcodeScannerActivity.this, DisplayBookListActivity.class);
+                i.putExtra("listName", listName);
+                i.putExtra("listId", listId);
+                startActivity(i);
             }
         });
     }
