@@ -29,7 +29,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".ProfileSettingsActivity" />
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".barcode.BarcodeCaptureActivity" />
         <activity android:name=".BarcodeScannerActivity">
             android:label="@string/title_activity_barcode_scanner"

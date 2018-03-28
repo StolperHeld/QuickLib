@@ -60,7 +60,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 } else if (id == R.id.nav_book_add) {
                     startActivity(new Intent(getApplicationContext(), AddBookActivity.class));
                 } else if (id == R.id.nav_profile) {
-                    startActivity(new Intent(getApplicationContext(), ProfileSettingsActivity.class));
+                    startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                 } else if (id == R.id.nav_bookshelf) {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 } else if (id == R.id.nav_search_isbn) {
