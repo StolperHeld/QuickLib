@@ -69,6 +69,8 @@ public class AddBookActivity extends NavigationDrawerActivity {
                 if(validation.validateIsbn(bookIsbn)){
                     Book book = new Book(bookTitle, bookIsbn, bookAuthor, bookPublisher, bookPublisherDate, bookPublisherPlace, bookPages);
                     FirebaseMethods.createBook(book,listId);
+                    Intent intentForBackward = new Intent(AddBookActivity.this, DisplayBookListActivity.class);
+                    startActivity(intentForBackward);
                 }else {
                     Toast.makeText(AddBookActivity.this, "entered ISBN is no ISBN", Toast.LENGTH_LONG).show();
                 }

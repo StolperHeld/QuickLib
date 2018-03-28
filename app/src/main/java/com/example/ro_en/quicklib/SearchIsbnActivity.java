@@ -1,5 +1,6 @@
 package com.example.ro_en.quicklib;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -85,6 +86,9 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
             @Override
             public void onClick(View v) {
                 FirebaseMethods.createBook(backgroundBook,listId);
+
+                Intent intentForBackward = new Intent(SearchIsbnActivity.this, DisplayBookListActivity.class);
+                startActivity(intentForBackward);
             }
         });
     }

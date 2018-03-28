@@ -79,6 +79,9 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
             @Override
             public void onClick(View v) {
                 FirebaseMethods.createBook(backgroundBook,listId);
+
+                Intent intentForBackward = new Intent(BarcodeScannerActivity.this, DisplayBookListActivity.class);
+                startActivity(intentForBackward);
             }
         });
     }
