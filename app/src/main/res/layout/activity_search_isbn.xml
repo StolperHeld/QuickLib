@@ -26,6 +26,7 @@
             android:id="@+id/search_isbn_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:background="@color/secondaryColor"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical|center_horizontal"
@@ -71,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="@string/add_book_isbn"
+                    android:hint="@string/add_book_title"
                     android:inputType="none" />
             </TableRow>
 

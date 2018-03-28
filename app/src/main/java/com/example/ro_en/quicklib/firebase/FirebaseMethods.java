@@ -20,8 +20,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class FirebaseMethods {
@@ -31,6 +35,7 @@ public class FirebaseMethods {
     private FirebaseAuth auth;
     private static FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private static String userId = user.getUid().toString();
+    private static Query mQuery;
 
 
     //get current user
@@ -108,22 +113,44 @@ public class FirebaseMethods {
 
     public static void createBook(Book book, final String listId) {
         final Book newBook = book;
+        final String isbn = newBook.getBookIsbn();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         final CollectionReference listRef = db.collection("books");
-        listRef.add(book)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot successfully written! With ID: " + documentReference.getId());
-                        addBookToList(documentReference.getId(), listId, newBook);
+
+        mQuery = db.collection("books").whereEqualTo("bookIsbn", isbn);
+        mQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if(task.isSuccessful()) {
+                        QuerySnapshot qSnap = task.getResult();
+                        if (!qSnap.isEmpty()) {
+                            Log.d("Query Data", String.valueOf(task.getResult().getDocuments().get(0).getData()));
+                            Book oldBook = task.getResult().getDocuments().get(0).toObject(Book.class);
+                            String documentId = task.getResult().getDocuments().get(0).getId();
+                            addBookToList(documentId, listId, oldBook);
+                        } else {
+                            listRef.add(newBook)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                            Log.d(TAG, "DocumentSnapshot successfully written! With ID: " + documentReference.getId());
+                                            addBookToList(documentReference.getId(), listId, newBook);
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error writing document", e);
+                                        }
+                                    });
+                        }
+
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
+                }
+            });
+
+
+
     }
 
     public static void addBookToList(String bookId, String listId, Book book) {

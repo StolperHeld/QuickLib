@@ -43,6 +43,7 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
         final String listId;
         final String listName;
         if (extras == null){
+            listName = "";
             listId = null;
         } else {
             listId = extras.getString("listId");
@@ -87,8 +88,9 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
             public void onClick(View v) {
                 FirebaseMethods.createBook(backgroundBook,listId);
 
-                Intent intentForBackward = new Intent(SearchIsbnActivity.this, DisplayBookListActivity.class);
-                startActivity(intentForBackward);
+                Intent i=new Intent(SearchIsbnActivity.this, DisplayBookListActivity.class);
+                i.putExtra("listName", listName);
+                i.putExtra("listId", listId);
             }
         });
     }
