@@ -81,7 +81,6 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
                 }
             }
         });
-        //TODO: hier mal Robert fragen ob das so rein soll (ist von BarcodeScannerActivity z.78-83)
         addBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
