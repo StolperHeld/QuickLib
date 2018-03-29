@@ -17,16 +17,14 @@ public class User {
     private Date birtdayDate;
     private int postCode;
     private String gender;
-    private List<String> lists;
 
 
     public User() {
     }
 
-    public User(String firstname, String lastname, List<String> lists){
+    public User(String firstname, String lastname){
         this.firstname = firstname;
         this.lastname = lastname;
-        this.lists = lists;
     }
 
     public User(String username, String firstname, String lastname,
@@ -40,7 +38,6 @@ public class User {
         this.birtdayDate = birthdayDate;
         this.postCode = postCode;
         this.gender = gender;
-        this.lists = lists;
     }
 
     public String getAdress() {
@@ -99,10 +96,6 @@ public class User {
         return lastname;
     }
 
-    public List<String> getLists() {
-        return lists;
-    }
-
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
@@ -111,7 +104,4 @@ public class User {
         this.lastname = lastname;
     }
 
-    public void setLists(List<String> lists) {
-        this.lists = lists;
-    }
 }

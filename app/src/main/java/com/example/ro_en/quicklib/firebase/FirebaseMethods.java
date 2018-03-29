@@ -71,7 +71,7 @@ public class FirebaseMethods {
                     }
                 });
     }
-
+/*
     public static void addListToUser(final String listId) {
         userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -94,7 +94,7 @@ public class FirebaseMethods {
             }
         });
     }
-
+*/
     public static void updateUser(User user) {
         userRef.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
