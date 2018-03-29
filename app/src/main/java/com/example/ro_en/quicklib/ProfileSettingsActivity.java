@@ -1,6 +1,7 @@
 package com.example.ro_en.quicklib;
 
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.Editable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -29,11 +31,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class ProfileSettingsActivity extends NavigationDrawerActivity {
 
     Spinner spinnerGender;
     EditText username, firstname, lastname, adress, placeOfResidence, postCode, birthdayDate;
+    Calendar myCalendar = Calendar.getInstance();
     Button userUpdate;
     User getUser;
 
@@ -55,97 +59,7 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = user.getUid().toString();
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("user").document(userId);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document != null && document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        User getUser = document.toObject(User.class);
-                        username.setText(getUser.getUsername());
-                        firstname.setText(getUser.getFirstname());
-                        lastname.setText(getUser.getLastname());
-                        adress.setText(getUser.getAdress());
-                        placeOfResidence.setText(getUser.getPlaceOfResidence());
-                        postCode.setText(String.valueOf(getUser.getPostCode()));
-                        //int bdDate = Integer.parseInt(getUser.getBirtdayDate().toString());
-                        //birthdayDate.setText(String.valueOf(bdDate));
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
-
-        birthdayDate.addTextChangedListener(new TextWatcher() {
-            private String current = "";
-            private String ddmmyyyy = "DDMMYYYY";
-            private Calendar cal = Calendar.getInstance();
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().equals(current)) {
-                    String clean = s.toString().replaceAll("[^\\d.]|\\.", "");
-                    String cleanC = current.replaceAll("[^\\d.]|\\.", "");
-
-                    int cl = clean.length();
-                    int sel = cl;
-                    for (int i = 2; i <= cl && i < 6; i += 2) {
-                        sel++;
-                    }
-                    //Fix for pressing delete next to a forward slash
-                    if (clean.equals(cleanC)) sel--;
-
-                    if (clean.length() < 8) {
-                        clean = clean + ddmmyyyy.substring(clean.length());
-                    } else {
-                        //This part makes sure that when we finish entering numbers
-                        //the date is correct, fixing it otherwise
-                        int day = Integer.parseInt(clean.substring(0, 2));
-                        int mon = Integer.parseInt(clean.substring(2, 4));
-                        int year = Integer.parseInt(clean.substring(4, 8));
-
-                        mon = mon < 1 ? 1 : mon > 12 ? 12 : mon;
-                        cal.set(Calendar.MONTH, mon - 1);
-                        year = (year < 1900) ? 1900 : (year > 2100) ? 2100 : year;
-                        cal.set(Calendar.YEAR, year);
-                        // ^ first set year for the line below to work correctly
-                        //with leap years - otherwise, date e.g. 29/02/2012
-                        //would be automatically corrected to 28/02/2012
-
-                        day = (day > cal.getActualMaximum(Calendar.DATE)) ? cal.getActualMaximum(Calendar.DATE) : day;
-                        clean = String.format("%02d%02d%02d", day, mon, year);
-                    }
-
-                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
-                            clean.substring(2, 4),
-                            clean.substring(4, 8));
-
-                    sel = sel < 0 ? 0 : sel;
-                    current = clean;
-                    birthdayDate.setText(current);
-                    birthdayDate.setSelection(sel < current.length() ? sel : current.length());
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-
-        //Spnner for genderselection
+        //Spinner for genderselection
         final String[] gender = new String[1];
         spinnerGender = (Spinner) findViewById(R.id.gender_settings);
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -164,6 +78,62 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
 
             }
         });
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("user").document(userId);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        User getUser = document.toObject(User.class);
+                        username.setText(getUser.getUsername());
+                        firstname.setText(getUser.getFirstname());
+                        lastname.setText(getUser.getLastname());
+                        adress.setText(getUser.getAdress());
+                        spinnerGender.setSelection(adapter.getPosition(getUser.getGender()));
+                        placeOfResidence.setText(getUser.getPlaceOfResidence());
+                        postCode.setText(String.valueOf(getUser.getPostCode()));
+                        //int bdDate = Integer.parseInt(getUser.getBirtdayDate().toString());
+                        //birthdayDate.setText(String.valueOf(bdDate));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+        birthdayDate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(ProfileSettingsActivity.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+
 
         userUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,6 +165,13 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
         });
 
 
+    }
+
+    private void updateLabel() {
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        birthdayDate.setText(sdf.format(myCalendar.getTime()));
     }
 
     //TODO: wenn die endgültige Reihenfolge der Items feststeht dies nochmal verbessern

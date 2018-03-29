@@ -126,7 +126,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:hint="Bithday:"
-                android:inputType="date" />
+                android:inputType="date"
+                android:focusable="false"/>
         </android.support.design.widget.TextInputLayout>
 
         <Button
