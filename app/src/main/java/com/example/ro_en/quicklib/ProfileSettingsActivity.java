@@ -99,7 +99,7 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
                         postCode.setText(String.valueOf(getUser.getPostCode()));
                         Date dateBD = null;
                         try {
-                            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                            DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
                             String date = formatter.format(getUser.getBirtdayDate());
                             birthdayDate.setText(date);
                         } catch (Exception e) {
@@ -152,7 +152,7 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
                 postCodeNumber = Integer.parseInt(postCode.getText().toString());
                 Date dateBD = null;
                 try {
-                    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
                     dateBD = (Date) formatter.parse(birthdayDate.getText().toString());
                     Log.d(TAG, "Date: " + dateBD);
                 } catch (ParseException e) {
