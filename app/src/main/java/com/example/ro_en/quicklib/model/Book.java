@@ -15,6 +15,8 @@ public class Book {
     private String bookPublisherPlace;
     private String bookImageUrl;
     private int bookPages;
+    private int numRatings;
+    private double avgRating;
 
     public Book() {}
 
@@ -43,7 +45,21 @@ public class Book {
         this.bookPages = bookPages;
     }
 
+    public int getNumRatings() {
+        return numRatings;
+    }
 
+    public void setNumRatings(int numRatings) {
+        this.numRatings = numRatings;
+    }
+
+    public double getAvgRating() {
+        return avgRating;
+    }
+
+    public void setAvgRating(double avgRating) {
+        this.avgRating = avgRating;
+    }
 
     public String getBookTitle() {
         return bookTitle;

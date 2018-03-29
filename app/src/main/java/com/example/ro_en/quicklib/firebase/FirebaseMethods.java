@@ -36,6 +36,7 @@ public class FirebaseMethods {
     private static FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private static String userId = user.getUid().toString();
     private static Query mQuery;
+    private static User getUser;
 
 
     //get current user
@@ -71,6 +72,22 @@ public class FirebaseMethods {
                     }
                 });
     }
+
+    public static User getUser () {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users").document(userId);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot document = task.getResult();
+                if (document != null){
+                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    getUser = document.toObject(User.class);
+                }
+            }
+        });
+        return getUser;
+    }
 /*
     public static void addListToUser(final String listId) {
         userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -81,9 +98,9 @@ public class FirebaseMethods {
                     if (document != null && document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         User userToUpdate = document.toObject(User.class);
-                        List<String> list = userToUpdate.getLists();
-                        list.add(listId);
-                        userToUpdate.setLists(list);
+                        //List<String> list = userToUpdate.getLists();
+                        //list.add(listId);
+                        //userToUpdate.setLists(list);
                         updateUser(userToUpdate);
                     } else {
                         Log.d(TAG, "No such document");
@@ -101,13 +118,12 @@ public class FirebaseMethods {
             public void onSuccess(Void aVoid) {
                 Log.d(TAG, "DocumentSnapshot successfully written!");
             }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG, "Error writing document", e);
+            }
+        });
 
     }
 
@@ -119,36 +135,35 @@ public class FirebaseMethods {
 
         mQuery = db.collection("books").whereEqualTo("bookIsbn", isbn);
         mQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if(task.isSuccessful()) {
-                        QuerySnapshot qSnap = task.getResult();
-                        if (!qSnap.isEmpty()) {
-                            Log.d("Query Data", String.valueOf(task.getResult().getDocuments().get(0).getData()));
-                            Book oldBook = task.getResult().getDocuments().get(0).toObject(Book.class);
-                            String documentId = task.getResult().getDocuments().get(0).getId();
-                            addBookToList(documentId, listId, oldBook);
-                        } else {
-                            listRef.add(newBook)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                        @Override
-                                        public void onSuccess(DocumentReference documentReference) {
-                                            Log.d(TAG, "DocumentSnapshot successfully written! With ID: " + documentReference.getId());
-                                            addBookToList(documentReference.getId(), listId, newBook);
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Log.w(TAG, "Error writing document", e);
-                                        }
-                                    });
-                        }
-
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot qSnap = task.getResult();
+                    if (!qSnap.isEmpty()) {
+                        Log.d("Query Data", String.valueOf(task.getResult().getDocuments().get(0).getData()));
+                        Book oldBook = task.getResult().getDocuments().get(0).toObject(Book.class);
+                        String documentId = task.getResult().getDocuments().get(0).getId();
+                        addBookToList(documentId, listId, oldBook);
+                    } else {
+                        listRef.add(newBook)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Log.d(TAG, "DocumentSnapshot successfully written! With ID: " + documentReference.getId());
+                                        addBookToList(documentReference.getId(), listId, newBook);
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error writing document", e);
+                                    }
+                                });
                     }
-                }
-            });
 
+                }
+            }
+        });
 
 
     }
