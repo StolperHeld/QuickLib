@@ -2,8 +2,10 @@ package com.example.ro_en.quicklib;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,9 +16,12 @@ import android.widget.Toast;
 
 import com.example.ro_en.quicklib.firebase.FirebaseMethods;
 import com.example.ro_en.quicklib.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
@@ -30,6 +35,9 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
     Spinner spinnerGender;
     EditText username, firstname, lastname, adress, placeOfResidence, postCode, birthdayDate;
     Button userUpdate;
+    User getUser;
+    private static FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private static String userId = user.getUid().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +52,27 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
         placeOfResidence = (EditText) findViewById(R.id.place_of_residence_settings);
         postCode = (EditText) findViewById(R.id.post_code_settnigs);
         birthdayDate = (EditText) findViewById(R.id.birthday_date_settnigs);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users").document(userId);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot document = task.getResult();
+                if (document != null) {
+                    User getUser = document.toObject(User.class);
+                    username.setText(getUser.getUsername());
+                    firstname.setText(getUser.getFirstname());
+                    lastname.setText(getUser.getLastname());
+                    adress.setText(getUser.getAdress());
+                    placeOfResidence.setText(getUser.getPlaceOfResidence());
+                    postCode.setText(getUser.getPostCode());
+                    int bdDate = Integer.parseInt(getUser.getBirtdayDate().toString());
+                    birthdayDate.setText(bdDate);
+                }
+            }
+        });
+
         birthdayDate.addTextChangedListener(new TextWatcher() {
             private String current = "";
             private String ddmmyyyy = "DDMMYYYY";
@@ -134,33 +163,25 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
                 //TODO. hier noch abfragen ob der Username befüllt wurde!
                 int postCodeNumber = 0000000;
 
-                    postCodeNumber = Integer.parseInt(postCode.getText().toString());
-                    Date dateBD = null;
-                    try {
-                        DateFormat formatter = new SimpleDateFormat("DD/MM/yyyy");
-                        dateBD = (Date) formatter.parse(birthdayDate.getText().toString());
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    User currentUser = new User(username.getText().toString(), firstname.getText().toString(),
-                            lastname.getText().toString(), adress.getText().toString(),
-                            placeOfResidence.getText().toString(), dateBD,
-                            postCodeNumber,
-                            gender[0]);
-
-
-                    //get current user
-                    //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    //System.out.println(user.getUid().toString());
-                    //FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    //DocumentReference userRef = db.collection("user").document(user.getUid());
-
-
-                    FirebaseMethods.updateUser(currentUser);
-
-                    Toast.makeText(ProfileSettingsActivity.this, "User is filled", Toast.LENGTH_SHORT).show();
-
+                postCodeNumber = Integer.parseInt(postCode.getText().toString());
+                Date dateBD = null;
+                try {
+                    DateFormat formatter = new SimpleDateFormat("DD/MM/yyyy");
+                    dateBD = (Date) formatter.parse(birthdayDate.getText().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
+                User currentUser = new User(username.getText().toString(), firstname.getText().toString(),
+                        lastname.getText().toString(), adress.getText().toString(),
+                        placeOfResidence.getText().toString(), dateBD,
+                        postCodeNumber,
+                        gender[0]);
+
+                FirebaseMethods.updateUser(currentUser);
+
+                Toast.makeText(ProfileSettingsActivity.this, "User is filled", Toast.LENGTH_SHORT).show();
+
+            }
 
         });
 

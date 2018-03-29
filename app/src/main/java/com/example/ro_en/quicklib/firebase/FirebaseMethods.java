@@ -73,21 +73,7 @@ public class FirebaseMethods {
                 });
     }
 
-    public static User getUser () {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("users").document(userId);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot document = task.getResult();
-                if (document != null){
-                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                    getUser = document.toObject(User.class);
-                }
-            }
-        });
-        return getUser;
-    }
+
 /*
     public static void addListToUser(final String listId) {
         userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
