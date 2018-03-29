@@ -2,6 +2,7 @@ package com.example.ro_en.quicklib;
 
 
 import android.app.DatePickerDialog;
+import android.nfc.FormatException;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.Editable;
@@ -96,8 +97,14 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
                         spinnerGender.setSelection(adapter.getPosition(getUser.getGender()));
                         placeOfResidence.setText(getUser.getPlaceOfResidence());
                         postCode.setText(String.valueOf(getUser.getPostCode()));
-                        //int bdDate = Integer.parseInt(getUser.getBirtdayDate().toString());
-                        //birthdayDate.setText(String.valueOf(bdDate));
+                        Date dateBD = null;
+                        try {
+                            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                            String date = formatter.format(getUser.getBirtdayDate());
+                            birthdayDate.setText(date);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -145,8 +152,9 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
                 postCodeNumber = Integer.parseInt(postCode.getText().toString());
                 Date dateBD = null;
                 try {
-                    DateFormat formatter = new SimpleDateFormat("DD/MM/yyyy");
+                    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                     dateBD = (Date) formatter.parse(birthdayDate.getText().toString());
+                    Log.d(TAG, "Date: " + dateBD);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
