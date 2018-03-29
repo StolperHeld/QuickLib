@@ -176,7 +176,7 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
     }
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "MM/dd/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         birthdayDate.setText(sdf.format(myCalendar.getTime()));
