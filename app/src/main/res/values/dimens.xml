@@ -11,6 +11,8 @@
     <dimen name="standard_105">105dp</dimen>
     <dimen name="standard_100">100dp</dimen>
     <dimen name="standard_145">145dp</dimen>
-    <dimen name="standard_12">12dp</dimen>
+    <dimen name="standard_10">10dp</dimen>
     <dimen name="standard_25">25dp</dimen>
+    <dimen name="standard_15">15dp</dimen>
+    <dimen name="standard_9">9dp</dimen>
 </resources>

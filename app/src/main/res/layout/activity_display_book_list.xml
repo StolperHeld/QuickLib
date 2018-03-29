@@ -44,10 +44,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="@dimen/standard_25"
-        android:layout_marginRight="@dimen/standard_25"
+        android:layout_marginRight="@dimen/standard_15"
         android:clipToPadding="false"
         android:gravity="center_vertical"
-        android:padding="@dimen/standard_12"
+        android:padding="@dimen/standard_9"
         android:visibility="gone">
 
         <TextView
@@ -60,7 +60,7 @@
             android:id="@+id/fab_search_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/standard_9"
             android:tint="@android:color/white"
             app:fabSize="mini"
             app:srcCompat="@drawable/ic_search_24dp" />
@@ -72,10 +72,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="@dimen/standard_25"
-        android:layout_marginRight="@dimen/standard_25"
+        android:layout_marginRight="@dimen/standard_15"
         android:clipToPadding="false"
         android:gravity="center_vertical"
-        android:padding="@dimen/standard_12"
+        android:padding="@dimen/standard_9"
         android:visibility="gone">
 
         <TextView
@@ -88,7 +88,7 @@
             android:id="@+id/fab_add_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/standard_9"
             android:tint="@android:color/white"
             app:fabSize="mini"
             app:srcCompat="@drawable/ic_add_circle_24dp" />
@@ -100,10 +100,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="@dimen/standard_25"
-        android:layout_marginRight="@dimen/standard_25"
+        android:layout_marginRight="@dimen/standard_15"
         android:clipToPadding="false"
         android:gravity="center_vertical"
-        android:padding="@dimen/standard_12"
+        android:padding="@dimen/standard_9"
         android:visibility="gone">
 
         <TextView
@@ -116,7 +116,7 @@
             android:id="@+id/fab_scan_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/standard_9"
             android:tint="@android:color/white"
             app:fabSize="mini"
             app:srcCompat="@drawable/ic_camera_enhance_24dp" />
@@ -126,20 +126,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
         android:clipToPadding="false"
-        android:gravity="center_vertical"
-        android:padding="@dimen/standard_12">
+        android:gravity="center_vertical">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
             android:gravity="center_vertical"
             app:fabSize="normal"
             app:srcCompat="@drawable/ic_add_black_24dp" />
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
+<!--android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"-->

@@ -144,12 +144,6 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:text="Update your User"
                 android:textColor="@color/white" />
-
-
         </LinearLayout>
-
-
     </ScrollView>
-
-
 </android.support.constraint.ConstraintLayout>

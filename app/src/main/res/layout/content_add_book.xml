@@ -9,74 +9,79 @@
     tools:context="com.example.ro_en.quicklib.AddBookActivity"
     tools:showIn="@layout/activity_add_book">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/addBookTitle"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/add_book_title" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <EditText
-            android:id="@+id/addBookIsbn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/add_book_isbn"
-            android:inputType="number" />
+            <EditText
+                android:id="@+id/addBookTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/add_book_title" />
 
-        <EditText
-            android:id="@+id/addBookAuthor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/add_book_author" />
+            <EditText
+                android:id="@+id/addBookIsbn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/add_book_isbn"
+                android:inputType="number" />
 
-        <EditText
-            android:id="@+id/addBookPublisher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/add_book_publisher" />
+            <EditText
+                android:id="@+id/addBookAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/add_book_author" />
 
-        <EditText
-            android:id="@+id/addBookPublisherPlace"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/add_book_publisher_place" />
+            <EditText
+                android:id="@+id/addBookPublisher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/add_book_publisher" />
 
-        <EditText
-            android:id="@+id/addBookPublisherDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/add_book_publisher_date" />
+            <EditText
+                android:id="@+id/addBookPublisherPlace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/add_book_publisher_place" />
 
-        <EditText
-            android:id="@+id/addBookPages"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/add_book_pages"
-            android:inputType="number" />
+            <EditText
+                android:id="@+id/addBookPublisherDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/add_book_publisher_date" />
+
+            <EditText
+                android:id="@+id/addBookPages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/add_book_pages"
+                android:inputType="number" />
 
 
-        <TextView
-            android:id="@+id/addBookListName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:gravity="center_horizontal|center_vertical"
-            android:visibility="invisible"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/addBookListName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="TextView"
+                android:textSize="22sp"
+                android:visibility="invisible" />
 
-        <Button
-            android:id="@+id/addBookButton"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/add_book_button" />
+            <Button
+                android:id="@+id/addBookButton"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_book_button" />
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>
