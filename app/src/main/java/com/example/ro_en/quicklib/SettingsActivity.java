@@ -30,7 +30,7 @@ public class SettingsActivity extends NavigationDrawerActivity {
         //setContentView(R.layout.activity_profil_settings);
 
         //Navigation Drawer
-        getLayoutInflater().inflate(R.layout.activity_profil_settings, frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_settings, frameLayout);
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
