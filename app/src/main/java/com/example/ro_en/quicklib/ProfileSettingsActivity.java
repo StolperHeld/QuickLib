@@ -36,8 +36,8 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
     EditText username, firstname, lastname, adress, placeOfResidence, postCode, birthdayDate;
     Button userUpdate;
     User getUser;
-    private static FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private static String userId = user.getUid().toString();
+
+    private static final String TAG = "ProfileSettings-Log";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,23 +52,32 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
         placeOfResidence = (EditText) findViewById(R.id.place_of_residence_settings);
         postCode = (EditText) findViewById(R.id.post_code_settnigs);
         birthdayDate = (EditText) findViewById(R.id.birthday_date_settnigs);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = user.getUid().toString();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("users").document(userId);
+        DocumentReference docRef = db.collection("user").document(userId);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot document = task.getResult();
-                if (document != null) {
-                    User getUser = document.toObject(User.class);
-                    username.setText(getUser.getUsername());
-                    firstname.setText(getUser.getFirstname());
-                    lastname.setText(getUser.getLastname());
-                    adress.setText(getUser.getAdress());
-                    placeOfResidence.setText(getUser.getPlaceOfResidence());
-                    postCode.setText(getUser.getPostCode());
-                    int bdDate = Integer.parseInt(getUser.getBirtdayDate().toString());
-                    birthdayDate.setText(bdDate);
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        User getUser = document.toObject(User.class);
+                        username.setText(getUser.getUsername());
+                        firstname.setText(getUser.getFirstname());
+                        lastname.setText(getUser.getLastname());
+                        adress.setText(getUser.getAdress());
+                        placeOfResidence.setText(getUser.getPlaceOfResidence());
+                        postCode.setText(String.valueOf(getUser.getPostCode()));
+                        //int bdDate = Integer.parseInt(getUser.getBirtdayDate().toString());
+                        //birthdayDate.setText(String.valueOf(bdDate));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
                 }
             }
         });

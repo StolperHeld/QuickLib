@@ -118,7 +118,6 @@ public class FirebaseMethods {
         final String isbn = newBook.getBookIsbn();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         final CollectionReference listRef = db.collection("books");
-
         mQuery = db.collection("books").whereEqualTo("bookIsbn", isbn);
         mQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
