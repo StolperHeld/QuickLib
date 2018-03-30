@@ -77,4 +77,15 @@
     <string name="page_text">\u2116 of Pages:</string>
     <string name="search_isbn_button">Search ISBN</string>
     <string name="search_isbn">Search ISBN</string>
+    <string name="hint_review">Enter your review</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
+    <string name="filter_add_review">Add your Review</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reviewBtn">Add your Review</string>
+    <string name="reviewText">Enter your review</string>
+    <string name="addReviewBtn">Add your Review</string>
+    <string name="numberReviews">Number Reviews</string>
 </resources>

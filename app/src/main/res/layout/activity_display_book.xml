@@ -27,12 +27,52 @@
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/displayBookImage"
-                android:layout_width="150dp"
-                android:layout_height="200dp"
-                android:layout_gravity="right"
-                android:layout_marginTop="10dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="false"
+                    android:orientation="vertical"
+                    tools:layout_centerHorizontal="false">
+
+                    <RatingBar
+                        android:id="@+id/display_book_review"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false" />
+
+                    <TextView
+                        android:id="@+id/display_book_number_reviews"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/numberReviews" />
+
+                    <Button
+                        android:id="@+id/openReview"
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primaryColor"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/addReviewBtn"
+                        android:textColor="@color/primaryTextColor" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/displayBookImage"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -144,15 +184,46 @@
                         android:ems="10"
                         android:inputType="none" />
                 </TableRow>
-
             </TableLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/reviewText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/reviewText" />
+
+            <RatingBar
+                android:id="@+id/reviewRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:numStars="5" />
+
+            <Button
+                android:id="@+id/addReviewBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondaryColor"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/reviewBtn"
+                android:textColor="@color/secondaryTextColor" />
+
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/display_book_rating_recycler_View"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/list_name"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical">
+
+            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

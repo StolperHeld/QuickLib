@@ -16,13 +16,27 @@ public class Book {
     private String bookImageUrl;
     private int bookPages;
     private int numRatings;
-    private double avgRating;
+    private float avgRating;
 
-    public Book() {}
+    public Book() {
+    }
+
+    public Book(String bookTitle, String bookIsbn, String bookAuthor, String bookPublisher, String bookPublisherDate, String bookPublisherPlace, String bookImageUrl, int bookPages, int numRatings, float avgRating) {
+        this.bookTitle = bookTitle;
+        this.bookIsbn = bookIsbn;
+        this.bookAuthor = bookAuthor;
+        this.bookPublisher = bookPublisher;
+        this.bookPublisherDate = bookPublisherDate;
+        this.bookPublisherPlace = bookPublisherPlace;
+        this.bookImageUrl = bookImageUrl;
+        this.bookPages = bookPages;
+        this.numRatings = numRatings;
+        this.avgRating = avgRating;
+    }
 
     public Book(String bookTitle, String bookIsbn, String bookAuthor,
                 String bookPublisher, String bookPublisherDate,
-                String bookPublisherPlace, String bookImageUrl, int bookPages){
+                String bookPublisherPlace, String bookImageUrl, int bookPages) {
         this.bookTitle = bookTitle;
         this.bookIsbn = bookIsbn;
         this.bookAuthor = bookAuthor;
@@ -35,7 +49,7 @@ public class Book {
 
     public Book(String bookTitle, String bookIsbn, String bookAuthor,
                 String bookPublisher, String bookPublisherDate,
-                String bookPublisherPlace,  int bookPages){
+                String bookPublisherPlace, int bookPages) {
         this.bookTitle = bookTitle;
         this.bookIsbn = bookIsbn;
         this.bookAuthor = bookAuthor;
@@ -53,11 +67,11 @@ public class Book {
         this.numRatings = numRatings;
     }
 
-    public double getAvgRating() {
+    public float getAvgRating() {
         return avgRating;
     }
 
-    public void setAvgRating(double avgRating) {
+    public void setAvgRating(float avgRating) {
         this.avgRating = avgRating;
     }
 
