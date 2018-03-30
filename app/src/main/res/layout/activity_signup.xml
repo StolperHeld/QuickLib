@@ -80,6 +80,13 @@
                 android:textColor="@color/primaryColor" />
 
             <!-- Link to Login Screen -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/sign_in_button"
@@ -93,12 +100,6 @@
                 android:textSize="15dp" />
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center|bottom"
-            android:layout_marginBottom="20dp"
-            android:visibility="gone" />
+
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
