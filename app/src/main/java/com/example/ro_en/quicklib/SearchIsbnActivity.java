@@ -1,6 +1,9 @@
 package com.example.ro_en.quicklib;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ro_en.quicklib.barcode.BarcodeCaptureActivity;
 import com.example.ro_en.quicklib.firebase.FirebaseMethods;
 import com.example.ro_en.quicklib.model.Book;
 import com.example.ro_en.quicklib.utils.AsyncResponse;
@@ -42,7 +46,7 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
         Bundle extras = getIntent().getExtras();
         final String listId;
         final String listName;
-        if (extras == null){
+        if (extras == null) {
             listName = "";
             listId = null;
         } else {
@@ -55,40 +59,47 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
         searchIsbn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String isbn = mIsbnSearch.getText().toString();
-                IsbnValidation validation = new IsbnValidation();
-                if (validation.validateIsbn(isbn)) {
+                if (isOnline()) {
+                    String isbn = mIsbnSearch.getText().toString();
+                    IsbnValidation validation = new IsbnValidation();
+                    if (validation.validateIsbn(isbn)) {
 
+                    } else {
+                        Toast.makeText(SearchIsbnActivity.this, "Barcode is no ISBN", Toast.LENGTH_LONG).show();
+                    }
+                    try {
+                        HttpRequestBuilder asyncTask = new HttpRequestBuilder(new AsyncResponse() {
+                            @Override
+                            public void processFinish(Book book) {
+                                mBookTitle.setText(book.getBookTitle());
+                                mBookAuthor.setText(book.getBookAuthor());
+                                mBookIsbn.setText(book.getBookIsbn());
+                                mBookPublisher.setText(book.getBookPublisher());
+                                mBookPublishPlace.setText(book.getBookPublisherPlace());
+                                mBookPublishDate.setText(book.getBookPublisherDate());
+                                mBookPages.setText(String.valueOf(book.getBookPages()));
+                                backgroundBook = book;
+                                addBook.setEnabled(true);
+                            }
+                        });
+                        asyncTask.execute(isbn);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } else {
-                    Toast.makeText(SearchIsbnActivity.this, "Barcode is no ISBN", Toast.LENGTH_LONG).show();
-                }
-                try {
-                    HttpRequestBuilder asyncTask = new HttpRequestBuilder(new AsyncResponse() {
-                        @Override
-                        public void processFinish(Book book) {
-                            mBookTitle.setText(book.getBookTitle());
-                            mBookAuthor.setText(book.getBookAuthor());
-                            mBookIsbn.setText(book.getBookIsbn());
-                            mBookPublisher.setText(book.getBookPublisher());
-                            mBookPublishPlace.setText(book.getBookPublisherPlace());
-                            mBookPublishDate.setText(book.getBookPublisherDate());
-                            mBookPages.setText(String.valueOf(book.getBookPages()));
-                            backgroundBook = book;
-                            addBook.setEnabled(true);
-                        }
-                    });
-                    asyncTask.execute(isbn);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    Toast.makeText(SearchIsbnActivity.this, "there is no internet connection", Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
-        addBook.setOnClickListener(new View.OnClickListener() {
+        addBook.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View v) {
-                FirebaseMethods.createBook(backgroundBook,listId);
+                FirebaseMethods.createBook(backgroundBook, listId);
 
-                Intent i=new Intent(SearchIsbnActivity.this, DisplayBookListActivity.class);
+                Intent i = new Intent(SearchIsbnActivity.this, DisplayBookListActivity.class);
                 i.putExtra("listName", listName);
                 i.putExtra("listId", listId);
                 startActivity(i);
@@ -101,4 +112,12 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
         super.onResume();
         navigationView.getMenu().getItem(4).setChecked(true);
     }
+
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
 }

@@ -1,7 +1,10 @@
 package com.example.ro_en.quicklib;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -72,8 +75,13 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
         scanBarcodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
-                startActivityForResult(intent, BARCODE_READER_REQUEST_CODE);
+                if(isOnline()){
+                    Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
+                    startActivityForResult(intent, BARCODE_READER_REQUEST_CODE);
+                }else{
+                    Toast.makeText(BarcodeScannerActivity.this, "there is no internet connection", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         addBook.setOnClickListener(new View.OnClickListener() {
@@ -137,4 +145,10 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
         navigationView.getMenu().getItem(0).setChecked(true);
     }
 
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
 }
