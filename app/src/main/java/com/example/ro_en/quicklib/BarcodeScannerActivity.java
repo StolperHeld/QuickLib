@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.ro_en.quicklib.barcode.BarcodeCaptureActivity;
 import com.example.ro_en.quicklib.firebase.FirebaseMethods;
 import com.example.ro_en.quicklib.model.Book;
@@ -79,7 +78,7 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
                     Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
                     startActivityForResult(intent, BARCODE_READER_REQUEST_CODE);
                 }else{
-                    Toast.makeText(BarcodeScannerActivity.this, "there is no internet connection", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BarcodeScannerActivity.this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -108,7 +107,7 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
                     if (validation.validateIsbn(barcode.displayValue)) {
                         mResultTextView.setText(barcode.displayValue);
                     } else {
-                        Toast.makeText(this, "Barcode is no ISBN", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, R.string.barcode_no_isbn, Toast.LENGTH_LONG).show();
                     }
 
                     try {
@@ -137,12 +136,10 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
         } else super.onActivityResult(requestCode, resultCode, data);
     }
 
-
-    //TODO: wenn die endgültige Reihenfolge der Items feststeht dies nochmal verbessern
     @Override
     protected void onResume() {
         super.onResume();
-        navigationView.getMenu().getItem(0).setChecked(true);
+        navigationView.getMenu().getItem(1).setChecked(true);
     }
 
     public boolean isOnline() {

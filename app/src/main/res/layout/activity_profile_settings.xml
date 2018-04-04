@@ -26,7 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:hint="Username:"
+                    android:hint="@string/username"
                     android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:hint="Firstname:"
+                    android:hint="@string/firstname"
                     android:inputType="textCapSentences" />
             </android.support.design.widget.TextInputLayout>
 
@@ -52,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:hint="Lastname:"
+                    android:hint="@string/lastname"
                     android:inputType="textCapSentences" />
             </android.support.design.widget.TextInputLayout>
 
@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:hint="Adress:"
+                    android:hint="@string/adress"
                     android:inputType="textCapSentences" />
             </android.support.design.widget.TextInputLayout>
 
@@ -78,7 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:hint="Place of Residence:"
+                    android:hint="@string/place_of_residence"
                     android:inputType="textCapSentences" />
             </android.support.design.widget.TextInputLayout>
 
@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:hint="Post Code:"
+                    android:hint="@string/post_code"
                     android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
@@ -106,7 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:text="Gender:"
+                    android:text="@string/gender"
                     android:textSize="22sp" />
 
                 <Spinner
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:focusable="false"
-                    android:hint="Bithday:"
+                    android:hint="@string/birthday"
                     android:inputType="date" />
             </android.support.design.widget.TextInputLayout>
 
@@ -142,7 +142,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/secondaryColor"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="Update your User"
+                android:text="@string/update_your_user"
                 android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>

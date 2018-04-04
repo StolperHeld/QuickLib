@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.ro_en.quicklib.DisplayBookListActivity;
 import com.example.ro_en.quicklib.model.Lists;
 import com.example.ro_en.quicklib.R;
@@ -44,7 +42,6 @@ public class ListListAdapter extends RecyclerView.Adapter<ListListAdapter.ViewHo
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(context, "List-Id: "+ listId, Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(context, DisplayBookListActivity.class);
                 i.putExtra("listName", listName);
                 i.putExtra("listId", listId);

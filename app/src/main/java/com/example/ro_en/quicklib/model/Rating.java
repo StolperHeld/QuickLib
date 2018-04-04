@@ -29,9 +29,6 @@ public class Rating {
         this.text = text;
     }
 
-
-
-
     public float getRating() {
         return rating;
     }

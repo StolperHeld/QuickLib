@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,8 +26,6 @@ public class SettingsActivity extends NavigationDrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_profil_settings);
-
         //Navigation Drawer
         getLayoutInflater().inflate(R.layout.activity_settings, frameLayout);
 
@@ -105,17 +102,17 @@ public class SettingsActivity extends NavigationDrawerActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(SettingsActivity.this, "Email address is updated. Please sign in with new email id!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SettingsActivity.this, R.string.email_address_is_updated, Toast.LENGTH_LONG).show();
                                         signOut();
                                         progressBar.setVisibility(View.GONE);
                                     } else {
-                                        Toast.makeText(SettingsActivity.this, "Failed to update email!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SettingsActivity.this, R.string.failed_to_update_email, Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
                                     }
                                 }
                             });
                 } else if (newEmail.getText().toString().trim().equals("")) {
-                    newEmail.setError("Enter email");
+                    newEmail.setError(R.string.enter_email + "");
                     progressBar.setVisibility(View.GONE);
                 }
             }
@@ -141,7 +138,7 @@ public class SettingsActivity extends NavigationDrawerActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 if (user != null && !newPassword.getText().toString().trim().equals("")) {
                     if (newPassword.getText().toString().trim().length() < 6) {
-                        newPassword.setError("Password too short, enter minimum 6 characters");
+                        newPassword.setError(R.string.password_too_short+"");
                         progressBar.setVisibility(View.GONE);
                     } else {
                         user.updatePassword(newPassword.getText().toString().trim())
@@ -149,18 +146,18 @@ public class SettingsActivity extends NavigationDrawerActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(SettingsActivity.this, "Password is updated, sign in with new password!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(SettingsActivity.this, R.string.password_is_updated, Toast.LENGTH_SHORT).show();
                                             signOut();
                                             progressBar.setVisibility(View.GONE);
                                         } else {
-                                            Toast.makeText(SettingsActivity.this, "Failed to update password!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(SettingsActivity.this, R.string.failed_to_update_email, Toast.LENGTH_SHORT).show();
                                             progressBar.setVisibility(View.GONE);
                                         }
                                     }
                                 });
                     }
                 } else if (newPassword.getText().toString().trim().equals("")) {
-                    newPassword.setError("Enter password");
+                    newPassword.setError(R.string.enter_password + "");
                     progressBar.setVisibility(View.GONE);
                 }
             }
@@ -190,16 +187,16 @@ public class SettingsActivity extends NavigationDrawerActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(SettingsActivity.this, "Reset password email is sent!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SettingsActivity.this, R.string.reset_password_email_is_sent, Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);
                                     } else {
-                                        Toast.makeText(SettingsActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SettingsActivity.this, R.string.failed_to_send_reset_email, Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);
                                     }
                                 }
                             });
                 } else {
-                    oldEmail.setError("Enter email");
+                    oldEmail.setError(R.string.enter_email + "");
                     progressBar.setVisibility(View.GONE);
                 }
             }
@@ -215,12 +212,12 @@ public class SettingsActivity extends NavigationDrawerActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(SettingsActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SettingsActivity.this, R.string.profile_is_deleted, Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(SettingsActivity.this, SignupActivity.class));
                                         finish();
                                         progressBar.setVisibility(View.GONE);
                                     } else {
-                                        Toast.makeText(SettingsActivity.this, "Failed to delete your account!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SettingsActivity.this, R.string.failed_to_delete_your_account, Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);
                                     }
                                 }
@@ -246,8 +243,7 @@ public class SettingsActivity extends NavigationDrawerActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //TODO: wenn die endgültige Reihenfolge der Items feststeht dies nochmal verbessern
-        navigationView.getMenu().getItem(2).setChecked(true);
+        navigationView.getMenu().getItem(5).setChecked(true);
         progressBar.setVisibility(View.GONE);
     }
 

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +17,6 @@ public class AddBookActivity extends NavigationDrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_add_book);
-
         //navigation Drawer
         getLayoutInflater().inflate(R.layout.activity_add_book, frameLayout);
 
@@ -85,11 +82,10 @@ public class AddBookActivity extends NavigationDrawerActivity {
 
     }
 
-    //TODO: wenn die endgültige Reihenfolge der Items feststeht dies nochmal verbessern
     @Override
     protected void onResume() {
         super.onResume();
-        navigationView.getMenu().getItem(1).setChecked(true);
+        navigationView.getMenu().getItem(2).setChecked(true);
     }
 
 }

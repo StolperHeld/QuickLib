@@ -6,10 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.example.ro_en.quicklib.R;
 import com.example.ro_en.quicklib.model.Rating;
-
 import java.util.List;
 
 public class RatingApdater extends RecyclerView.Adapter<RatingApdater.ViewHolder> {

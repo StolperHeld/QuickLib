@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.ro_en.quicklib.DisplayBookActivity;
 import com.example.ro_en.quicklib.R;
 import com.example.ro_en.quicklib.model.ShortBook;

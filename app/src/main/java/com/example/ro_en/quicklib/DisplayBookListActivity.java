@@ -13,8 +13,6 @@ import android.view.animation.AlphaAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
-import com.example.ro_en.quicklib.firebase.BookListAdapter;
 import com.example.ro_en.quicklib.firebase.ShortBookAdapter;
 import com.example.ro_en.quicklib.model.Book;
 import com.example.ro_en.quicklib.model.ShortBook;
@@ -26,7 +24,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +40,6 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
     private List<Book> bookList = new ArrayList<>();
     private ShortBookAdapter shortBookAdapter;
     private RecyclerView shortBookRecyclerView;
-    private BookListAdapter bookListAdapter;
     private TextView listNameFromMain;
 
     @Override

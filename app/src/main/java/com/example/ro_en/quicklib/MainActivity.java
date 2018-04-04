@@ -1,6 +1,5 @@
 package com.example.ro_en.quicklib;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +10,10 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
-
+import java.util.ArrayList;
+import java.util.List;
 //Imports Firebase Auth
 import com.example.ro_en.quicklib.firebase.FirebaseMethods;
 import com.example.ro_en.quicklib.firebase.ListListAdapter;
@@ -24,15 +21,11 @@ import com.example.ro_en.quicklib.model.Lists;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends NavigationDrawerActivity{
@@ -97,7 +90,7 @@ public class MainActivity extends NavigationDrawerActivity{
                 final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
                 alertDialog.create();
                 alertDialog.setTitle("BookShelf");
-                alertDialog.setMessage("insert here the name for your new BookShelf");
+                alertDialog.setMessage(R.string.new_book_shelf_name);
                 final EditText bookShelfname = new EditText(MainActivity.this);
                 alertDialog.setView(bookShelfname);
                 alertDialog.setCancelable(false);
@@ -144,16 +137,12 @@ public class MainActivity extends NavigationDrawerActivity{
                 }
             });
         }
-
-
     }
 
-
-    //TODO: wenn die endgültige Reihenfolge der Items feststeht dies nochmal verbessern
     @Override
     protected void onResume() {
         super.onResume();
-        navigationView.getMenu().getItem(3).setChecked(true);
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
     @Override
     public void onStart() {

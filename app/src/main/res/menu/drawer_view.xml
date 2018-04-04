@@ -3,32 +3,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_bookshelf"
+            android:icon="@drawable/ic_library_books_24dp"
+            android:title="@string/home" />
+        <item
             android:id="@+id/nav_scanner"
             android:icon="@drawable/ic_camera_enhance_24dp"
-            android:title="Scanner" />
+            android:title="@string/scanner" />
         <item
             android:id="@+id/nav_book_add"
             android:icon="@drawable/ic_add_circle_24dp"
-            android:title="Add a Book" />
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_settings_24dp"
-            android:title="Settings" />
-        <item
-            android:id="@+id/nav_bookshelf"
-            android:icon="@drawable/ic_library_books_24dp"
-            android:title="Your Lists" />
+            android:title="@string/add_a_book" />
         <item
             android:id="@+id/nav_search_isbn"
-            android:title="Search ISBN"
+            android:title="@string/search_isbn"
             android:icon="@drawable/ic_search_24dp"/>
         <item
             android:id="@+id/nav_profile_settings"
             android:icon="@drawable/ic_person_24dp"
-            android:title="Profile Settings" />
+            android:title="@string/profile_settings" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_settings_24dp"
+            android:title="@string/settings" />
         <item
             android:id="@+id/nav_sign_out"
-            android:title="Logout"
+            android:title="@string/logout"
             android:icon="@drawable/ic_exit_to_app_24dp"/>
     </group>
 </menu>

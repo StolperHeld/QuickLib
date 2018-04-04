@@ -13,16 +13,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
-
 import com.example.ro_en.quicklib.firebase.RatingApdater;
 import com.example.ro_en.quicklib.model.Book;
-
 import com.example.ro_en.quicklib.model.Rating;
 import com.example.ro_en.quicklib.utils.LoadImage;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,7 +29,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Transaction;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;

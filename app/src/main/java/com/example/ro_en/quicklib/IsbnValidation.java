@@ -1,9 +1,5 @@
 package com.example.ro_en.quicklib;
 
-/**
- * Created by thoma on 20.03.2018.
- */
-
 public class IsbnValidation {
 
     public boolean validateIsbn(String isbnAsString) {

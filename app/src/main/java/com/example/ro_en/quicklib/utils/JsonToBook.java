@@ -1,10 +1,8 @@
 package com.example.ro_en.quicklib.utils;
 
 import com.example.ro_en.quicklib.model.Book;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.Iterator;
 
 /**
@@ -26,9 +24,7 @@ public class JsonToBook {
     public static Book jsontoBook(String jsonString) throws Exception {
         JSONObject jsonObject = new JSONObject(jsonString);
         Iterator<String> keys = jsonObject.keys();
-        // get some_name_i_wont_know in str_Name
         String isbn_Name = keys.next();
-        // get the value i care about
         JSONObject bookJson = jsonObject.getJSONObject(isbn_Name);
         if (bookJson.has("title")) {
             bookTitle = bookJson.getString("title");

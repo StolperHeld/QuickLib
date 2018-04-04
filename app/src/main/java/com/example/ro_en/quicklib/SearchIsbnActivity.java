@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.ro_en.quicklib.barcode.BarcodeCaptureActivity;
 import com.example.ro_en.quicklib.firebase.FirebaseMethods;
 import com.example.ro_en.quicklib.model.Book;
 import com.example.ro_en.quicklib.utils.AsyncResponse;
@@ -28,7 +26,6 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_search_isbn);
         getLayoutInflater().inflate(R.layout.activity_search_isbn, frameLayout);
         mBookTitle = findViewById(R.id.isbnsearch_result_BookTitle);
         mBookAuthor = findViewById(R.id.isbnsearch_result_BookAuthor);
@@ -65,7 +62,7 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
                     if (validation.validateIsbn(isbn)) {
 
                     } else {
-                        Toast.makeText(SearchIsbnActivity.this, "Barcode is no ISBN", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SearchIsbnActivity.this,R.string.barcode_no_isbn, Toast.LENGTH_LONG).show();
                     }
                     try {
                         HttpRequestBuilder asyncTask = new HttpRequestBuilder(new AsyncResponse() {
@@ -87,7 +84,7 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(SearchIsbnActivity.this, "there is no internet connection", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchIsbnActivity.this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -110,7 +107,7 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        navigationView.getMenu().getItem(4).setChecked(true);
+        navigationView.getMenu().getItem(3).setChecked(true);
     }
 
     public boolean isOnline() {

@@ -2,11 +2,8 @@ package com.example.ro_en.quicklib;
 
 
 import android.app.DatePickerDialog;
-import android.nfc.FormatException;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +13,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.example.ro_en.quicklib.firebase.FirebaseMethods;
 import com.example.ro_en.quicklib.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,7 +22,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -182,10 +177,9 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
         birthdayDate.setText(sdf.format(myCalendar.getTime()));
     }
 
-    //TODO: wenn die endgültige Reihenfolge der Items feststeht dies nochmal verbessern
     @Override
     protected void onResume() {
         super.onResume();
-        navigationView.getMenu().getItem(5).setChecked(true);
+        navigationView.getMenu().getItem(4).setChecked(true);
     }
 }

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">QuickLib</string>
     <string name="title_activity_main">QuickLib</string>
+    <string name="new_book_shelf_name">insert here the name for your new BookShelf</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_book">AddBookActivity</string>
     <string name="add_book_title">Book Title</string>
@@ -42,6 +43,15 @@
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
     <string name="title_activity_barcode_scanner">BarcodeScannerActivity</string>
     <string name="results"><u>Results:</u></string>
+    <string name="username">Username:</string>
+    <string name="firstname">Firstname:</string>
+    <string name="lastname">Lastname:</string>
+    <string name="adress">Adress:</string>
+    <string name="place_of_residence">Place of Residence:</string>
+    <string name="post_code">Post Code:</string>
+    <string name="gender">Gender:</string>
+    <string name="birthday">Birthday:</string>
+    <string name="update_your_user">Update your User</string>
 
     <!-- Strings related to MainActivity-->
     <string name="scan_barcode_button">Scan barcode</string>
@@ -53,10 +63,19 @@
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
     <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
     <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
+    <string name="barcode_no_isbn">Barcode is no ISBN</string>
+    <string name="no_internet_connection">there is no internet connection</string>
 
     <!-- Navgation Drawer -->
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="home">Home</string>
+    <string name="scanner">Scanner</string>
+    <string name="add_a_book">Add a Book</string>
+    <string name="search_isbn">Search ISBN</string>
+    <string name="profile_settings">Profile Settings</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
 
     <!-- Fab-Menu -->
     <string name="close_fab_menu">close menu</string>
@@ -66,7 +85,6 @@
 
     <!-- Recycler View -->
     <string name="message_no_results">Oops, couldn\'t find any results\nthat matched your filter</string>
-    <!-- TODO: muss noch geändert werden -->
 
     <string name="title_text">Title:</string>
     <string name="isbn_text">ISBN:</string>
@@ -76,16 +94,27 @@
     <string name="publisher_place_text">Place of Publication:</string>
     <string name="page_text">\u2116 of Pages:</string>
     <string name="search_isbn_button">Search ISBN</string>
-    <string name="search_isbn">Search ISBN</string>
     <string name="hint_review">Enter your review</string>
     <string name="cancel">Cancel</string>
     <string name="submit">Submit</string>
     <string name="filter_add_review">Add your Review</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="reviewBtn">Add your Review</string>
     <string name="reviewText">Enter your review</string>
     <string name="addReviewBtn">Add your Review</string>
     <string name="numberReviews">Number Reviews</string>
+
+    <!-- settings & Signup-->
+    <string name="enter_email_address">Enter email address!</string>
+    <string name="enter_password">Enter password!</string>
+    <string name="password_too_short">Password too short, enter minimum 6 characters!</string>
+    <string name="authentication_failed">Authentication failed. </string>
+    <string name="email_address_is_updated">Email address is updated. Please sign in with new email id!</string>
+    <string name="failed_to_update_email">Failed to update email!</string>
+    <string name="password_is_updated">Password is updated, sign in with new password!</string>
+    <string name="failed_to_update_password">Failed to update password!</string>
+    <string name="reset_password_email_is_sent">Reset password email is sent!</string>
+    <string name="failed_to_send_reset_email">Failed to send reset email!</string>
+    <string name="enter_email">Enter email</string>
+    <string name="profile_is_deleted">Your profile is deleted :-( Create a account now!</string>
+    <string name="failed_to_delete_your_account">Failed to delete your account!</string>
 </resources>
