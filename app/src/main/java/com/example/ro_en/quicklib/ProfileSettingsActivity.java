@@ -75,6 +75,8 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
             }
         });
 
+        //checks if the user has writhen somethin in is profile settigs
+        //if he has it will be shown in the Activity
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("user").document(userId);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -134,9 +136,7 @@ public class ProfileSettingsActivity extends NavigationDrawerActivity {
             }
         });
 
-
-
-
+        //adds all userdates form the profile settings on Firabase
         userUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

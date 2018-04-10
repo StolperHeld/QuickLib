@@ -40,6 +40,7 @@ public class SearchIsbnActivity extends NavigationDrawerActivity {
         addBook = findViewById(R.id.isbnsearch_addBookButton);
         addBook.setEnabled(false);
 
+        //selected list is passed in the intent
         Bundle extras = getIntent().getExtras();
         final String listId;
         final String listName;

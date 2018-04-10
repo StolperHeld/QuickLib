@@ -57,6 +57,7 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
         addBook.setEnabled(false);
         mListName = findViewById(R.id.result_List);
 
+        //selected list is passed in the intent
         Bundle extras = getIntent().getExtras();
         final String listId;
         final String listName;
@@ -70,6 +71,7 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
             mListName.setVisibility(View.VISIBLE);
         }
 
+        //starts the barcodescaner
         Button scanBarcodeButton = findViewById(R.id.scan_barcode_button);
         scanBarcodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +85,8 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
 
             }
         });
+
+        //adds the Book to a list
         addBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +99,7 @@ public class BarcodeScannerActivity extends NavigationDrawerActivity {
             }
         });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

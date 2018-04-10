@@ -27,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
-
+//Activity with the list of the lists from a user
 public class MainActivity extends NavigationDrawerActivity{
 
     private FirebaseAuth.AuthStateListener authListener;
@@ -66,7 +66,6 @@ public class MainActivity extends NavigationDrawerActivity{
         auth = FirebaseAuth.getInstance();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -80,8 +79,7 @@ public class MainActivity extends NavigationDrawerActivity{
             }
         };
 
-
-
+        //adds a list and saves it on Firabase
         FloatingActionButton addBookShelfBtn = (FloatingActionButton) findViewById(R.id.addBookShelfBtn);
         addBookShelfBtn.setOnClickListener(new View.OnClickListener() {
             @Override

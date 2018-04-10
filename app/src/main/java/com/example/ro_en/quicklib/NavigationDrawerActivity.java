@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import com.google.firebase.auth.FirebaseAuth;
 
+//activity that handels all functiones of der NavigationDrawer
 public class NavigationDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout drawerLayout;

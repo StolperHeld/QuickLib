@@ -31,7 +31,7 @@ public class AddBookActivity extends NavigationDrawerActivity {
 
 
         Button addBookButton = (Button) findViewById(R.id.addBookButton);
-
+        //selected list is passed in the intent
         Bundle extras = getIntent().getExtras();
         final String listId;
         final String listName;
@@ -46,7 +46,7 @@ public class AddBookActivity extends NavigationDrawerActivity {
         }
         System.out.println("Intent-Add-Book: " + listId);
 
-
+        //Book is added to the selected list
         addBookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +63,7 @@ public class AddBookActivity extends NavigationDrawerActivity {
                     bookPages = Integer.parseInt(addBookPages.getText().toString());
                 }
 
+                //if the ISBN is corect the Book will bee added in the list and in Firabae
                 IsbnValidation validation = new IsbnValidation();
                 if(validation.validateIsbn(bookIsbn)){
                     Book book = new Book(bookTitle, bookIsbn, bookAuthor, bookPublisher, bookPublisherDate, bookPublisherPlace, bookPages);

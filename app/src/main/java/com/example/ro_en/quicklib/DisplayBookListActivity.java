@@ -156,10 +156,6 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
         });
         listNameFromMain = findViewById(R.id.list_name);
         listNameFromMain.setText(listName);
-
-
-
-
     }
 
     private void showFABMenu(){

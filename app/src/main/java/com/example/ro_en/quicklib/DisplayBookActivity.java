@@ -88,6 +88,7 @@ public class DisplayBookActivity extends NavigationDrawerActivity {
             }
         });
 
+        //opens selected book from Firebase
         final DocumentReference docRef = db.collection("books").document(bookId);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
