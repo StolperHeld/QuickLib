@@ -8,7 +8,7 @@ import com.google.firebase.firestore.ServerTimestamp;
 import java.util.Date;
 
 /**
- * Created by RO_EN on 28.03.2018.
+ * Model-Class for Rating
  */
 
 

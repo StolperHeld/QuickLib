@@ -79,7 +79,7 @@ public class MainActivity extends NavigationDrawerActivity{
             }
         };
 
-        //adds a list and saves it on Firabase
+        //adds a list and saves it on Firebase
         FloatingActionButton addBookShelfBtn = (FloatingActionButton) findViewById(R.id.addBookShelfBtn);
         addBookShelfBtn.setOnClickListener(new View.OnClickListener() {
             @Override

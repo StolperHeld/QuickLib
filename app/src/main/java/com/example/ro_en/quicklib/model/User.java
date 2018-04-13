@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by RO_EN on 12.03.2018.
+ * Model-Class for User
  */
 
 public class User {

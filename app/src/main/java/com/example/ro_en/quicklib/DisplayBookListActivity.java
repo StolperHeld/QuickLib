@@ -132,6 +132,7 @@ public class DisplayBookListActivity extends NavigationDrawerActivity {
         });
 
 
+        //get Firebase books for the selected query
         userId = user.getUid();
         FirebaseFirestore mFireStore = FirebaseFirestore.getInstance();
         mQuery = mFireStore.collection("lists").document(listId).collection("books");

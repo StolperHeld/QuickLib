@@ -1,7 +1,7 @@
 package com.example.ro_en.quicklib.model;
 
 /**
- * Created by RO_EN on 12.03.2018.
+ * Model Class for List
  */
 
 public class Lists extends ListId{

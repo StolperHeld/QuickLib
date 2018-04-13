@@ -1,7 +1,7 @@
 package com.example.ro_en.quicklib.model;
 
 /**
- * Created by RO_EN on 25.03.2018.
+ * Model-Class for ShortBook
  */
 
 public class ShortBook {

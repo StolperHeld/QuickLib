@@ -9,7 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by thoma on 27.03.2018.
+ * Class to load Image in the Background
  */
 
 public class LoadImage extends AsyncTask<Void, Void, Bitmap> {

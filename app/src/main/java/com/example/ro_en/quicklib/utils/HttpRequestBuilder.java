@@ -17,7 +17,7 @@ public class HttpRequestBuilder extends AsyncTask<String, Book, String> {
     }
 
 
-
+    //Background Network Access. Return JSON-String
     @Override
     protected String doInBackground(String... ISBN){
         String sUrl = "http://openlibrary.org/api/books?bibkeys=ISBN:" + ISBN[0] + "&jscmd=data&format=json";

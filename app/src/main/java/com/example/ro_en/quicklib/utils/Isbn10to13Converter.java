@@ -1,7 +1,7 @@
 package com.example.ro_en.quicklib.utils;
 
 /**
- * Created by RO_EN on 21.03.2018.
+ * Class to create ISBN 13 from old ISBN 10 String
  */
 
 public class Isbn10to13Converter {

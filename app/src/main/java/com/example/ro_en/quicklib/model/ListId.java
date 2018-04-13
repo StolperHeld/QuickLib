@@ -3,7 +3,7 @@ package com.example.ro_en.quicklib.model;
 import android.support.annotation.NonNull;
 
 /**
- * Created by RO_EN on 24.03.2018.
+ * Extend for List Class to Implement Firebase-List-Id
  */
 
 public class ListId {

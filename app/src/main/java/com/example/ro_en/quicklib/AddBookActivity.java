@@ -77,7 +77,7 @@ public class AddBookActivity extends NavigationDrawerActivity {
                 }else {
                     Toast.makeText(AddBookActivity.this, "entered ISBN is no ISBN", Toast.LENGTH_LONG).show();
                 }
-                // TODO: Rating
+
             }
         });
 

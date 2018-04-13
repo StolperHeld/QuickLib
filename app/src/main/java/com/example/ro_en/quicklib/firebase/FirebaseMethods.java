@@ -45,6 +45,7 @@ public class FirebaseMethods {
         return id;
     }
 
+    //create a new List
     public static void createList(String name) {
         // Access a Cloud Firestore instance from your Activity
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -68,31 +69,7 @@ public class FirebaseMethods {
                 });
     }
 
-
-/*
-    public static void addListToUser(final String listId) {
-        userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document != null && document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        User userToUpdate = document.toObject(User.class);
-                        //List<String> list = userToUpdate.getLists();
-                        //list.add(listId);
-                        //userToUpdate.setLists(list);
-                        updateUser(userToUpdate);
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
-    }
-*/
+    //Update the User information
     public static void updateUser(User user) {
         userRef.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -108,6 +85,7 @@ public class FirebaseMethods {
 
     }
 
+    //Create a new Book
     public static void createBook(Book book, final String listId) {
         final Book newBook = book;
         final String isbn = newBook.getBookIsbn();
@@ -148,6 +126,7 @@ public class FirebaseMethods {
 
     }
 
+    //add Book to List
     public static void addBookToList(String bookId, String listId, Book book) {
         ShortBook shortBook = new ShortBook(book.getBookTitle(), bookId);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
